@@ -1,0 +1,82 @@
+.twist-aplayer-bar {
+  margin: 0 0 0 5px;
+  padding: 4px 0;
+  cursor: pointer !important;
+  flex: 1;
+
+  &-vars {
+    --tp-bar-width: 100%;
+    --tp-bar-height: 2px;
+    --tp-bar-background: hsl(var(--tp-primary) / .2);
+    --tp-bar-played-background: hsl(var(--tp-primary));
+    --tp-bar-loaded-background: hsl(var(--tp-foreground));
+    --tp-bar-loaded-transition-timing: .5s;
+    --tp-bar-loaded-transition-function: ease;
+    --tp-bar-thumb-width: 10px;
+    --tp-bar-thumb-height: 10px;
+    --tp-bar-thumb-margin-top: -4px;
+    --tp-bar-thumb-margin-right: -10px;
+    --tp-bar-thumb-transition-function: ease-in-out;
+    --tp-bar-thumb-transition-timing: .3s;
+    --tp-bar-thumb-hover-scale: 1;
+    --tp-bar-thumb-border-radius: 50%;
+    --tp-bar-thumb-background: hsl(var(--tp-foreground));
+  }
+
+  &__inner {
+    position: relative;
+    width: var(--tp-bar-width);
+    height: var(--tp-bar-height);
+    background: var(--tp-bar-background);
+  }
+
+  &__loaded {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    height: var(--tp-bar-height);
+    background: var(--tp-bar-loaded-background);
+    transition: all var(--tp-bar-loaded-transition-timing) var(--tp-bar-loaded-transition-function);
+  }
+
+  &__played {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    height: var(--tp-bar-height);
+    background-color: var(--tp-bar-played-backgroun);
+  }
+
+  &__thumb {
+    position: absolute;
+    top: 0;
+    right: 5px;
+    margin-top: var(--tp-bar-thumb-margin-top);
+    margin-right: var(--tp-bar-thumb-margin-right);
+    width: var(--tp-bar-thumb-width);
+    height: var(--tp-bar-thumb-height);
+    border-radius: var(--tp-bar-thumb-border-radius);
+    cursor: pointer;
+    background-color: var(--tp-bar-thumb-background);
+    transition: all var(--tp-bar-thumb-transition-timing) var(--tp-bar-thumb-transition-function);
+    transform: scale(0);
+    -webkit-transform: scale(0);
+  }
+
+  &:hover &__thumb {
+    transform: scale(var(--tp-bar-thumb-hover-scale));
+    -webkit-transform: scale(var(--tp-bar-thumb-hover-scale));
+  }
+
+  &--loading {
+    display: none;
+
+    & > svg {
+      position: absolute;
+      -webkit-animation: rotate 1s linear infinite;
+      animation: rotate 1s linear infinite;
+    }
+  }
+}

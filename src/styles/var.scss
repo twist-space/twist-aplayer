@@ -1,0 +1,56 @@
+:root {
+  --tp-background: 0 0% 100%;
+  --tp-foreground: 240 10% 3.9%;
+  --tp-card: 0 0% 100%;
+  --tp-card-foreground: 240 10% 3.9%;
+  --tp-popover: 0 0% 100%;
+  --tp-popover-foreground: 240 10% 3.9%;
+  --tp-primary: 240 5.9% 10%;
+  --tp-primary-foreground: 0 0% 98%;
+  --tp-secondary: 240 4.8% 95.9%;
+  --tp-secondary-foreground: 240 5.9% 10%;
+  --tp-muted: 240 4.8% 95.9%;
+  --tp-muted-foreground: 240 3.8% 46.1%;
+  --tp-accent: 240 4.8% 95.9%;
+  --tp-accent-foreground: 240 5.9% 10%;
+  --tp-destructive: 0 84.2% 60.2%;
+  --tp-destructive-foreground: 0 0% 98%;
+  --tp-border: 240 5.9% 90%;
+  --tp-input: 240 5.9% 90%;
+  --tp-ring: 240 5.9% 10%;
+  --tp-radius: 0.5rem;
+  --tp-chart-1: 12 76% 61%;
+  --tp-chart-2: 173 58% 39%;
+  --tp-chart-3: 197 37% 24%;
+  --tp-chart-4: 43 74% 66%;
+  --tp-chart-5: 27 87% 67%;
+  --tp-shadow: 0 0 #0000, 0 0 #0000, 0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px -1px rgba(0,0,0,.1);
+  --tp-padding: .75rem;
+}
+
+:root.twist-player-dark {
+  --tp-background: 240 10% 3.9%;
+  --tp-foreground: 0 0% 98%;
+  --tp-card: 240 10% 3.9%;
+  --tp-card-foreground: 0 0% 98%;
+  --tp-popover: 240 10% 3.9%;
+  --tp-popover-foreground: 0 0% 98%;
+  --tp-primary: 0 0% 98%;
+  --tp-primary-foreground: 240 5.9% 10%;
+  --tp-secondary: 240 3.7% 15.9%;
+  --tp-secondary-foreground: 0 0% 98%;
+  --tp-muted: 240 3.7% 15.9%;
+  --tp-muted-foreground: 240 5% 64.9%;
+  --tp-accent: 240 3.7% 15.9%;
+  --tp-accent-foreground: 0 0% 98%;
+  --tp-destructive: 0 62.8% 30.6%;
+  --tp-destructive-foreground: 0 0% 98%;
+  --tp-border: 240 3.7% 15.9%;
+  --tp-input: 240 3.7% 15.9%;
+  --tp-ring: 240 4.9% 83.9%;
+  --tp-chart-1: 220 70% 50%;
+  --tp-chart-2: 160 60% 45%;
+  --tp-chart-3: 30 80% 55%;
+  --tp-chart-4: 280 65% 60%;
+  --tp-chart-5: 340 75% 55%;
+}
