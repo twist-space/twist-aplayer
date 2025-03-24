@@ -4,7 +4,10 @@ import { Playlist } from '@/components/list';
 import { useNameHelper } from '@/hooks/use-name-helper';
 import { useAudioControl } from '@/hooks/useAudioControl';
 import { usePlaylist } from '@/hooks/usePlaylist';
-import { IonPause as IconPause } from '@twistify/react-icons/ion';
+import {
+  IonPause as IconPause,
+  IonIosArrowForward as IconRight,
+} from '@twistify/react-icons/ion';
 import { TiPlay as IconPlay } from '@twistify/react-icons/ti';
 import clsx from 'clsx';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -245,6 +248,14 @@ export function TwistPlayer({
               setDisplayLyrics(prev => !prev);
             }}
           />
+        </div>
+        <div
+          className={nh.be('miniswitcher')}
+          onClick={() => setMini(prev => !prev)}
+        >
+          <button className={nh.bs('icon')} type="button">
+            <IconRight />
+          </button>
         </div>
       </div>
       {hasPlaylist

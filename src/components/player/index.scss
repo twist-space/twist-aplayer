@@ -161,6 +161,21 @@
     right: 0%;
   }
 
+  &--narrow {
+    width: 66px;
+  }
+
+  &--narrow &__info,
+  &--narrow &-list {
+    display: none;
+  }
+
+  &--narrow &__body,
+  &--narrow &__pic {
+    width: 66px !important;
+    height: 66px !important;
+  }
+
   &__pic {
     position: relative;
     float: left;
@@ -235,6 +250,35 @@
     cursor: default;
     padding-bottom: 2px;
     height: 20px;
+  }
+
+  &--fixed &__miniswitcher {
+    display: block;
+  }
+
+  &__miniswitcher {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    background: hsl(var(--tp-accent));
+    width: 18px;
+    border-radius: 0 2px 2px 0;
+  }
+
+  &__miniswitcher &-icon {
+    height: 100%;
+    width: 100%;
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+    transition: all 0.3s ease;
+  }
+
+  &--fixed#{&}--narrow &-icon {
+    -webkit-transform: rotateY(0);
+    transform: rotateY(0);
   }
 
   &__title {
