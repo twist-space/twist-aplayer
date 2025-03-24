@@ -60,7 +60,7 @@ export function PlaybackControls({
   onToggleLyrics,
 }: PlaybackControlsProps) {
   const nh = useNameHelper('aplayer-controller');
-  const nhi = useNameHelper('aplayer');
+  const nhi = useNameHelper('aplayer-icon');
   // Switch order between "list" and "random"
   const handleOrderButtonClick = useCallback(() => {
     const nextOrder: PlaylistOrder = (
@@ -113,14 +113,14 @@ export function PlaybackControls({
             {formatAudioDuration(audioDurationSeconds)}
           </span>
         </span>
-        <span className={clsx(nhi.bs('icon'), nhi.bs('icon-back'))} onClick={onSkipBack}>
+        <span className={clsx(nhi.b(), nhi.bs('back'))} onClick={onSkipBack}>
           <IconBack />
         </span>
-        <span className={clsx(nhi.bs('icon'), nhi.bs('icon-play'))} onClick={onTogglePlay}>
+        <span className={clsx(nhi.b(), nhi.bs('play'))} onClick={onTogglePlay}>
           {isPlaying ? <IconPause /> : <IconPlay />}
         </span>
         <span
-          className={clsx(nhi.bs('icon'), nhi.bs('icon-forward'))}
+          className={clsx(nhi.b(), nhi.bs('forward'))}
           onClick={onSkipForward}
         >
           <IconForward />
@@ -132,7 +132,7 @@ export function PlaybackControls({
           onChangeVolume={onChangeVolume}
         />
         <button
-          className={clsx(nhi.bs('icon'), nhi.bs('order'))}
+          className={clsx(nhi.b(), nhi.bs('order'))}
           onClick={handleLoopButtonClick}
           type="button"
         >
@@ -146,15 +146,15 @@ export function PlaybackControls({
         </button>
         <button
           type="button"
-          className={clsx(nhi.bs('icon'), nhi.bs('menu'))}
+          className={clsx(nhi.b(), nhi.bs('menu'))}
           onClick={() => onToggleMenu?.()}
         >
           <IconMenu />
         </button>
         <button
           type="button"
-          className={clsx(nhi.bs('icon'), nhi.bs('lrc'), {
-            [nhi.ns('icon-lrc-inactivity')]: !showLyrics,
+          className={clsx(nhi.b(), nhi.bs('lrc'), {
+            [nhi.ns('lrc-inactivity')]: !showLyrics,
           })}
           onClick={onToggleLyrics}
         >
