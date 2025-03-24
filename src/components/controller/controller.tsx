@@ -4,15 +4,19 @@ import { Volume } from '@/components/volume';
 import { useNameHelper } from '@/hooks/use-name-helper';
 import { formatAudioDuration } from '@/utils/formatAudioDuration';
 import { AiBackwardFilled as IconBack, AiForwardFilled as IconForward } from '@twistify/react-icons/ai';
-import { MdiMenu as IconMenu } from '@twistify/react-icons/mdi';
+import {
+  MdiMenu as IconMenu,
+  MdiShuffleVariant as IconOrderRandom,
+  MdiRepeatOff as IconRepeatOff,
+} from '@twistify/react-icons/mdi';
 import {
   MiMusicVideo as IconLyric,
+  MiArrowRightAltRounded as IconOrderList,
   MiPause as IconPause,
   MiPlayArrowRounded as IconPlay,
   MiRepeatRounded as IconReapteRounded,
   MiRepeatOneRounded as IconRepeatOne,
 } from '@twistify/react-icons/mi';
-import { TaRepeatOff as IconRepeatOff } from '@twistify/react-icons/ta';
 import clsx from 'clsx';
 import { useCallback } from 'react';
 
@@ -131,6 +135,13 @@ export function PlaybackControls({
           onToggleMuted={onToggleMuted}
           onChangeVolume={onChangeVolume}
         />
+        <button
+          className={clsx(nhi.b(), nhi.bs('order'))}
+          onClick={handleOrderButtonClick}
+          type="button"
+        >
+          {{ list: <IconOrderList />, random: <IconOrderRandom /> }[order]}
+        </button>
         <button
           className={clsx(nhi.b(), nhi.bs('order'))}
           onClick={handleLoopButtonClick}
