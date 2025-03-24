@@ -27,6 +27,7 @@
     transition: all 0.2s ease;
     overflow: hidden;
     margin: 0;
+    background-color: hsl(var(--tp-background));
   }
 
   ol li#{&}--active {

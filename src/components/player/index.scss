@@ -28,7 +28,7 @@
   }
 
   &__body {
-    // background-color: hsl(var(--tp-foreground));
+    background-color: hsl(var(--tp-background));
   }
 
   &-icon {
@@ -99,7 +99,6 @@
     right: 0;
     margin: 0;
     z-index: 99;
-    background: #fff;
     padding-right: 18px;
     transition: all 0.3s ease;
     max-width: 400px;
@@ -127,6 +126,11 @@
 
   &--withlist &-list {
     display: block;
+  }
+
+  &--withlist &-icon-order,
+  &--withlist &-icon-menu {
+    display: inline;
   }
 
   &--fixed &-icon-back,
@@ -239,7 +243,7 @@
   &--play {
     width: 26px;
     height: 26px;
-    border: 2px solid #fff;
+    border: 2px solid hsl(var(--tp-secondary-foreground));
     bottom: 50%;
     right: 50%;
     margin: 0 -15px -15px 0;
@@ -250,6 +254,10 @@
       left: 4px;
       height: 20px;
       width: 20px;
+    }
+
+    path {
+      fill: hsl(var(--tp-secondary-foreground));
     }
   }
 
@@ -315,17 +323,22 @@
     transition: all 0.3s ease;
   }
 
+  &__miniswitcher &-icon path {
+    fill: hsl(var(--tp-muted-foreground));
+  }
+
   &--fixed#{&}--narrow &-icon {
     -webkit-transform: rotateY(0);
     transform: rotateY(0);
   }
 
   &__title {
+    color: hsl(var(--tp-secondary-foreground));
     font-size: 14px;
   }
 
   &__author {
     font-size: 12px;
-    color: #666;
+    color: hsl(var(--tp-muted-foreground));;
   }
 }

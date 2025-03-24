@@ -41,8 +41,24 @@ const playlist1 = [
   },
 ];
 
+type Theme = 'light' | 'dark';
 function App() {
   const [playlist] = useState<AudioInfo[]>(playlist1);
+  const [theme, setTheme] = useState<Theme>('light');
+  const changeTheme = (theme: Theme) => {
+    const bodyClassList = document.documentElement.classList;
+
+    bodyClassList.remove('twist-aplayer-dark');
+
+    if (theme === 'light') {
+      bodyClassList.add('twist-aplayer-dark');
+      document.documentElement.style.background = '#121212';
+      setTheme('dark');
+    } else {
+      setTheme('light');
+      document.documentElement.style.background = '#ffffff';
+    }
+  };
 
   return (
     <div
@@ -55,6 +71,12 @@ function App() {
         justifyContent: 'center',
       }}
     >
+      <button
+        onClick={() => changeTheme(theme)}
+        type="button"
+      >
+        切换主题
+      </button>
       <div style={{ width: 600 }}>
         <TwistPlayer
           audio={playlist}
