@@ -12,6 +12,7 @@ import { TiPlay as IconPlay } from '@twistify/react-icons/ti';
 import clsx from 'clsx';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { PlaybackControls } from '../controller/controller';
+import { Lyrics } from '../lyrics';
 
 /**
  * @see https://aplayer.js.org/#/home?id=options
@@ -219,6 +220,15 @@ export function TwistPlayer({
               {renderArtist(playlist.currentSong?.artist)}
             </span>
           </div>
+          {appearance === 'fixed'
+            ? null
+            : (
+                <Lyrics
+                  show={displayLyrics}
+                  lrcText={playlist.currentSong.lrc}
+                  currentTime={audioControl.currentTime ?? 0}
+                />
+              )}
           <PlaybackControls
             volume={audioControl.volume ?? volume}
             onChangeVolume={audioControl.setVolume}
@@ -245,6 +255,7 @@ export function TwistPlayer({
             }}
             showLyrics={displayLyrics}
             onToggleLyrics={() => {
+              console.log('改变歌词显示');
               setDisplayLyrics(prev => !prev);
             }}
           />
@@ -269,6 +280,13 @@ export function TwistPlayer({
             />
           )
         : null}
+      {appearance === 'fixed' && (
+        <Lyrics
+          show={displayLyrics}
+          lrcText={playlist.currentSong.lrc}
+          currentTime={audioControl.currentTime ?? 0}
+        />
+      )}
     </div>
   );
 }

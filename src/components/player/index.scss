@@ -11,7 +11,6 @@
     --tp-pic-height: 66px;
     --tp-pic-transition-function: ease;
     --tp-pic-transition-timing: .3s;
-
   }
 
   & {
@@ -47,8 +46,16 @@
     display: inline-block;
   }
 
+  &-controller__time &-icon path {
+    fill: hsl(var(--tp-muted-foreground));
+  }
+
+  &-controller__time &-icon:hover path {
+    fill: hsl(var(--tp-primary));
+  }
+
   &-icon path {
-    transition: all var(--tp-icon-transition-timing) var(--tp-icon-transition-functio);
+    transition: all var(--tp-icon-transition-timing) var(--tp-icon-transition-function);
   }
 
   &-icon-lrc-inactivity svg {
@@ -174,6 +181,38 @@
   &--narrow &__pic {
     width: 66px !important;
     height: 66px !important;
+  }
+
+  &--fixed &-lrc {
+    display: block;
+    position: fixed;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    margin: 0;
+    z-index: 98;
+    pointer-events: none;
+    text-shadow: -1px -1px 0 #fff;
+  }
+
+  &--fixed &-lrc::after,
+  &--fixed &-lrc::before {
+    display: none;
+  }
+
+  &--withlrc &-lrc {
+    display: block;
+  }
+
+  &--withlrc &__info {
+    margin-left: 90px;
+    height: 90px;
+    padding: 10px 7px 0;
+  }
+
+  &--withlrc &__pic {
+    height: 90px;
+    width: 90px;
   }
 
   &__pic {
