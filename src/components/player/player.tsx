@@ -1,12 +1,13 @@
 import type { PlaylistLoop, PlaylistOrder } from '@/hooks/usePlaylist';
 import type { ArtistInfo, AudioInfo } from '@/types';
+import { Playlist } from '@/components/list';
 import { useNameHelper } from '@/hooks/use-name-helper';
 import { useAudioControl } from '@/hooks/useAudioControl';
 import { usePlaylist } from '@/hooks/usePlaylist';
 import { IonPause as IconPause } from '@twistify/react-icons/ion';
 import { TiPlay as IconPlay } from '@twistify/react-icons/ti';
 import clsx from 'clsx';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { PlaybackControls } from '../controller/controller';
 
 /**
@@ -139,6 +140,20 @@ export function TwistPlayer({
 
   const hasPlaylist = playlist.length > 1;
 
+  const playlistAudioProp = useMemo(
+    () => (Array.isArray(audio) ? audio : [audio]),
+    [audio],
+  );
+
+  const { prioritize } = playlist;
+  const handlePlayAudioFromList = useCallback(
+    (audioInfo: AudioInfo) => {
+      cancelAutoSkip();
+      prioritize(audioInfo);
+    },
+    [cancelAutoSkip, prioritize],
+  );
+
   const [isPlaylistOpen, setPlaylistOpen] = useState(() => hasPlaylist);
 
   const [mini, setMini] = useState(false);
@@ -232,6 +247,17 @@ export function TwistPlayer({
           />
         </div>
       </div>
+      {hasPlaylist
+        ? (
+            <Playlist
+              open={isPlaylistOpen}
+              audio={playlistAudioProp}
+              playingAudioUrl={playlist.currentSong.url}
+              onPlayAudio={handlePlayAudioFromList}
+              listMaxHeight={listMaxHeight}
+            />
+          )
+        : null}
     </div>
   );
 }
