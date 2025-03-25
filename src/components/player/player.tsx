@@ -1,11 +1,11 @@
-import type { PlaylistLoop, PlaylistOrder } from '@/hooks/usePlaylist';
+import type { PlaylistLoop, PlaylistOrder } from '@/hooks/use-playlist';
 import type { ArtistInfo, AudioInfo } from '@/types';
 import { PlaybackControls } from '@/components/controller';
 import { Playlist } from '@/components/list';
 import { Lyrics } from '@/components/lyrics';
+import { useAudioControl } from '@/hooks/use-audio-control';
 import { useNameHelper } from '@/hooks/use-name-helper';
-import { useAudioControl } from '@/hooks/useAudioControl';
-import { usePlaylist } from '@/hooks/usePlaylist';
+import { usePlaylist } from '@/hooks/use-playlist';
 import {
   IonPause as IconPause,
   IonIosArrowForward as IconRight,

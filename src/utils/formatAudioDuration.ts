@@ -2,7 +2,7 @@ export function formatAudioDuration(seconds: number | undefined) {
   if (typeof seconds === 'undefined') {
     return '--:--';
   }
-  if (isNaN(seconds)) {
+  if (Number.isNaN(seconds)) {
     return '00:00';
   }
   const pad0 = (num: number) => {
