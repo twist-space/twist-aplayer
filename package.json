@@ -2,6 +2,7 @@
   "name": "twist-aplayer",
   "type": "module",
   "version": "0.1.0",
+  "private": false,
   "description": "A shadui theme aplayer",
   "author": {
     "name": "razzh",
@@ -40,7 +41,8 @@
     "build": "rimraf dist && pnpm build:umd && vite --config vite.config.build.ts build",
     "build:umd": "vite --config vite.config.umd.ts build",
     "preview": "vite preview",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "prepublishOnly": "pnpm build"
   },
   "peerDependencies": {
     "react": "^18.2.0",
@@ -77,5 +79,8 @@
     "last 2 versions",
     "not dead",
     "> 1%"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }
