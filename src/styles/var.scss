@@ -54,3 +54,32 @@
   --tp-chart-4: 280 65% 60%;
   --tp-chart-5: 340 75% 55%;
 }
+
+@media (prefers-color-scheme: dark) {
+  :root.twist-aplayer-dark {
+    --tp-background: 240 10% 3.9%;
+    --tp-foreground: 0 0% 98%;
+    --tp-card: 240 10% 3.9%;
+    --tp-card-foreground: 0 0% 98%;
+    --tp-popover: 240 10% 3.9%;
+    --tp-popover-foreground: 0 0% 98%;
+    --tp-primary: 0 0% 98%;
+    --tp-primary-foreground: 240 5.9% 10%;
+    --tp-secondary: 240 3.7% 15.9%;
+    --tp-secondary-foreground: 0 0% 98%;
+    --tp-muted: 240 3.7% 15.9%;
+    --tp-muted-foreground: 240 5% 64.9%;
+    --tp-accent: 240 3.7% 15.9%;
+    --tp-accent-foreground: 0 0% 98%;
+    --tp-destructive: 0 62.8% 30.6%;
+    --tp-destructive-foreground: 0 0% 98%;
+    --tp-border: 240 3.7% 15.9%;
+    --tp-input: 240 3.7% 15.9%;
+    --tp-ring: 240 4.9% 83.9%;
+    --tp-chart-1: 220 70% 50%;
+    --tp-chart-2: 160 60% 45%;
+    --tp-chart-3: 30 80% 55%;
+    --tp-chart-4: 280 65% 60%;
+    --tp-chart-5: 340 75% 55%;
+  }
+}
