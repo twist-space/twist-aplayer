@@ -1,9 +1,7 @@
 import type { AudioInfo } from '../src/types';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { TwistPlayer } from '../src';
-import '../src/styles/main.css';
-import '../src/styles/main.scss';
+import { TwistAPlayer } from '../src';
 
 const playlist1 = [
   {
@@ -78,14 +76,14 @@ function App() {
         切换主题
       </button>
       <div style={{ width: 600 }}>
-        <TwistPlayer
+        <TwistAPlayer
           audio={playlist}
           appearance="fixed"
           initialLoop="all"
         />
       </div>
       <div style={{ width: 600 }}>
-        <TwistPlayer
+        <TwistAPlayer
           audio={playlist}
           appearance="normal"
           initialLoop="all"

@@ -7,6 +7,6 @@ import { useMemo } from 'react';
  */
 export function useNameHelper<B extends string>(
   block: B,
-) {
+): ReturnType<typeof genBEM> {
   return useMemo(() => genBEM(block, 'twist'), [block]);
 }

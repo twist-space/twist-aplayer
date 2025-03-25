@@ -1,6 +1,8 @@
 import type { PlaylistLoop, PlaylistOrder } from '@/hooks/usePlaylist';
 import type { ArtistInfo, AudioInfo } from '@/types';
+import { PlaybackControls } from '@/components/controller';
 import { Playlist } from '@/components/list';
+import { Lyrics } from '@/components/lyrics';
 import { useNameHelper } from '@/hooks/use-name-helper';
 import { useAudioControl } from '@/hooks/useAudioControl';
 import { usePlaylist } from '@/hooks/usePlaylist';
@@ -11,13 +13,12 @@ import {
 import { TiPlay as IconPlay } from '@twistify/react-icons/ti';
 import clsx from 'clsx';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { PlaybackControls } from '../controller/controller';
-import { Lyrics } from '../lyrics';
+import '../../styles/main.scss';
 
 /**
  * @see https://aplayer.js.org/#/home?id=options
  */
-interface APlayerProps {
+export interface APlayerProps {
   audio: AudioInfo | readonly AudioInfo[];
   /**
    * Initial volume
@@ -49,7 +50,7 @@ interface APlayerProps {
   listMaxHeight?: number;
 }
 
-export function TwistPlayer({
+export function TwistAPlayer({
   audio,
   appearance = 'normal',
   volume = 0.7,
@@ -255,7 +256,6 @@ export function TwistPlayer({
             }}
             showLyrics={displayLyrics}
             onToggleLyrics={() => {
-              console.log('改变歌词显示');
               setDisplayLyrics(prev => !prev);
             }}
           />

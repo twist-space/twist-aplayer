@@ -92,7 +92,7 @@ export function parseLrc(lrc_s?: string): [time: number, text: string][] {
         // handle multiple time tag
         const timeLen = lrcTimes.length;
         for (let j = 0; j < timeLen; j++) {
-          const oneTime = /\[(\d{2}):(\d{2})(\.(\d{2,3}))?\]/.exec(lrcTimes[j]);
+          const oneTime = /\[(\d{2}):(\d{2})(\.(\d{2,3}))?\]/.exec(lrcTimes[j]) as any[];
           const min2sec = oneTime[1] * 60;
           const sec2sec = Number.parseInt(oneTime[2]);
           const msec2sec = oneTime[4]

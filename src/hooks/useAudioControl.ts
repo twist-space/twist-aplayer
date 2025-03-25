@@ -35,9 +35,11 @@ function useCreateAudioElement(options?: CreateAudioElementOptions) {
     const audio = audioElementRef.current;
 
     if (audio && options?.onError) {
+      // @ts-expect-error nothing
       audio.addEventListener('error', options.onError);
 
       return () => {
+      // @ts-expect-error nothing
         audio.removeEventListener('error', options.onError);
       };
     }
@@ -47,9 +49,11 @@ function useCreateAudioElement(options?: CreateAudioElementOptions) {
     const audio = audioElementRef.current;
 
     if (audio && options?.onEnded) {
+      // @ts-expect-error nothing
       audio.addEventListener('ended', options.onEnded);
 
       return () => {
+      // @ts-expect-error nothing
         audio.removeEventListener('ended', options.onEnded);
       };
     }
@@ -83,11 +87,9 @@ export function useAudioControl(options: CreateAudioElementOptions) {
           audio.currentTime = 0;
           audio.src = src;
         }
-        console.log('哈哈哈', audioElementRef.current);
         try {
           await audioElementRef.current?.play();
-        } catch (e) {
-          console.log('eee', e);
+        } catch {
           // nothing
         }
       }

@@ -21,5 +21,6 @@ export default antfu({
     'style/brace-style': 'off',
     'react/no-unstable-context-value': 'off',
     'react/no-children-for-each': 'off',
+    'regexp/no-unused-capturing-group': 'off',
   },
 });

@@ -1,1 +1,2 @@
-export { TwistPlayer } from './components/player';
+export * from './components/player';
+export type * from './types';
