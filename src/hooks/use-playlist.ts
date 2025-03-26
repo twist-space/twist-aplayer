@@ -62,8 +62,14 @@ export function usePlaylist<T, K>(
   }, [list, getSongId, currentSong]);
 
   const nextSong = useMemo(() => {
+    // If the playlist is loop one, it always play currentSong
+    if (loop === 'one') {
+      return { ...currentSong };
+    }
+
     const currentSongIndex = list.indexOf(currentSong);
 
+    // Not the last song, just update currentSong
     if (currentSongIndex < list.length - 1) {
       return list[currentSongIndex + 1];
     }
@@ -71,6 +77,7 @@ export function usePlaylist<T, K>(
     // If the playlist loops, it always has a next song to play
     if (loop !== 'none') return list[0];
 
+    // If the playlist is looped none, playing the last song stops
     return undefined;
   }, [list, currentSong, loop]);
 
@@ -78,7 +85,7 @@ export function usePlaylist<T, K>(
     if (nextSong) {
       setCurrentSong(nextSong);
     }
-  }, [nextSong]);
+  }, [nextSong, loop]);
 
   const previous = useCallback(() => {
     setCurrentSong((prev) => {
