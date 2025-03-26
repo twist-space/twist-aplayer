@@ -1,4 +1,4 @@
-import type { PlaylistLoop, PlaylistOrder } from '@/hooks/usePlaylist';
+import type { PlaylistLoop, PlaylistOrder } from '@/hooks/use-playlist';
 import { ProgressBar } from '@/components/progress';
 import { Volume } from '@/components/volume';
 import { useNameHelper } from '@/hooks/use-name-helper';
