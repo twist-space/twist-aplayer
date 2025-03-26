@@ -24,7 +24,7 @@ export function ProgressBar({
   onSeek,
 }: ProgressBarProps) {
   const nh = useNameHelper('aplayer-bar');
-  const nhi = useNameHelper('aplayer-icon')
+  const nhi = useNameHelper('aplayer-icon');
   const progressBarRef = useRef<HTMLDivElement>(null);
 
   const [progress, setProgress] = useState(playedPercentage);
