@@ -3,8 +3,6 @@
   --tp-foreground: 240 10% 3.9%;
   --tp-card: 0 0% 100%;
   --tp-card-foreground: 240 10% 3.9%;
-  --tp-popover: 0 0% 100%;
-  --tp-popover-foreground: 240 10% 3.9%;
   --tp-primary: 240 5.9% 10%;
   --tp-primary-foreground: 0 0% 98%;
   --tp-secondary: 240 4.8% 95.9%;
@@ -13,10 +11,7 @@
   --tp-muted-foreground: 240 3.8% 46.1%;
   --tp-accent: 240 4.8% 95.9%;
   --tp-accent-foreground: 240 5.9% 10%;
-  --tp-destructive: 0 84.2% 60.2%;
-  --tp-destructive-foreground: 0 0% 98%;
   --tp-border: 240 5.9% 90%;
-  --tp-radius: 0.5rem;
 }
 
 :root.twist-aplayer-dark {
@@ -24,8 +19,6 @@
   --tp-foreground: 0 0% 98%;
   --tp-card: 240 10% 3.9%;
   --tp-card-foreground: 0 0% 98%;
-  --tp-popover: 240 10% 3.9%;
-  --tp-popover-foreground: 0 0% 98%;
   --tp-primary: 0 0% 98%;
   --tp-primary-foreground: 240 5.9% 10%;
   --tp-secondary: 240 3.7% 15.9%;
@@ -34,7 +27,5 @@
   --tp-muted-foreground: 240 5% 64.9%;
   --tp-accent: 240 3.7% 15.9%;
   --tp-accent-foreground: 0 0% 98%;
-  --tp-destructive: 0 62.8% 30.6%;
-  --tp-destructive-foreground: 0 0% 98%;
   --tp-border: 240 3.7% 15.9%;
 }
