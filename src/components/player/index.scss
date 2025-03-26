@@ -11,6 +11,7 @@
     --tp-pic-height: 66px;
     --tp-pic-transition-function: ease;
     --tp-pic-transition-timing: .3s;
+    --tp-button-background: rgba(0, 0, 0, 0.2);
   }
 
   & {
@@ -233,17 +234,16 @@
   &__button {
     position: absolute;
     border-radius: 50%;
-    opacity: 0.8;
+    opacity: .8;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-    background: rgba(0, 0, 0, 0.2);
+    background: hsl(var(--tp-primary-foreground));
     transition: all 0.1s ease;
   }
 
   &--play {
     width: 26px;
     height: 26px;
-    border: 2px solid hsl(var(--tp-secondary-foreground));
     bottom: 50%;
     right: 50%;
     margin: 0 -15px -15px 0;
@@ -255,17 +255,12 @@
       height: 20px;
       width: 20px;
     }
-
-    path {
-      fill: hsl(var(--tp-secondary-foreground));
-    }
   }
 
   &--pause {
     font-size: 12px;
     width: 16px;
     height: 16px;
-    border: 2px solid #fff;
     bottom: 4px;
     right: 4px;
 
@@ -275,6 +270,13 @@
       left: 2px;
       height: 12px;
       width: 12px;
+    }
+  }
+
+  &--play,
+  &--pause {
+    path {
+      fill: hsl(var(--tp-accent-foreground));
     }
   }
 
