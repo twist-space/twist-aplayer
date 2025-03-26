@@ -12,8 +12,8 @@ importers:
         specifier: ^1.0.4
         version: 1.0.4(react@18.2.0)
       '@twistui/bem-helper':
-        specifier: ^1.0.0
-        version: 1.0.0
+        specifier: ^1.0.1
+        version: 1.0.1
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -853,8 +853,8 @@ packages:
     peerDependencies:
       react: '*'
 
-  '@twistui/bem-helper@1.0.0':
-    resolution: {integrity: sha512-MMe15N1o1Zyp5sKiJDxgsDTvcSQFwUaZbiSK2xy7WAPVKjYf0i5LDcOnXiFBUsEVi6HHfI565O6a3OUmlD4Sbw==}
+  '@twistui/bem-helper@1.0.1':
+    resolution: {integrity: sha512-EiNvOyygsfnPI7oNPozzWURVOEC0jrtdEWbKQUN1Sv3vXvOX7UNN40LkM4c9gWCJIJexfmN8C5dyYU4Xz16qCg==}
 
   '@tybys/wasm-util@0.9.0':
     resolution: {integrity: sha512-6+7nlbMVX/PVDCwaIQ8nTOPveOcFLSt8GcXdx8hD0bt39uWxYT88uXzqTd4fTvqta7oeUJqudepapKNt2DYJFw==}
@@ -3866,7 +3866,7 @@ snapshots:
     dependencies:
       react: 18.2.0
 
-  '@twistui/bem-helper@1.0.0': {}
+  '@twistui/bem-helper@1.0.1': {}
 
   '@tybys/wasm-util@0.9.0':
     dependencies:

@@ -1,5 +1,6 @@
-import { useBEM as genBEM } from '@twistui/bem-helper';
+import { useBEM as genBEM, type NBEM } from '@twistui/bem-helper';
 import { useMemo } from 'react';
+
 /**
  * Create a name helper for BEM.
  *
@@ -7,6 +8,6 @@ import { useMemo } from 'react';
  */
 export function useNameHelper<B extends string>(
   block: B,
-): ReturnType<typeof genBEM> {
+): NBEM<B, 'twist'> {
   return useMemo(() => genBEM(block, 'twist'), [block]);
 }
