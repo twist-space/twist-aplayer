@@ -70,14 +70,4 @@
     transform: scale(var(--tp-bar-thumb-hover-scale));
     -webkit-transform: scale(var(--tp-bar-thumb-hover-scale));
   }
-
-  &--loading {
-    display: none;
-
-    & > svg {
-      position: absolute;
-      -webkit-animation: rotate 1s linear infinite;
-      animation: rotate 1s linear infinite;
-    }
-  }
 }

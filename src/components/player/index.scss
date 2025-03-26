@@ -63,14 +63,24 @@
     opacity: 0.4;
   }
 
-  &.twist-loading-icon {
+  &-icon-loading {
+    display: none;
+  }
+
+  &--loading &-icon-loading {
     display: block;
   }
 
-  &-loading-icon svg {
+  &-icon-loading svg {
     position: absolute;
+    width: 10px;
+    height: 10px;
     -webkit-animation: rotate 1s linear infinite;
     animation: rotate 1s linear infinite;
+
+    path {
+      fill: hsl(var(--tp-background));
+    }
   }
 
   &-icon-back,
@@ -250,8 +260,8 @@
 
     svg {
       position: absolute;
-      top: 3px;
-      left: 4px;
+      top: 4px;
+      left: 5px;
       height: 20px;
       width: 20px;
     }
@@ -266,8 +276,8 @@
 
     svg {
       position: absolute;
-      top: 2px;
-      left: 2px;
+      top: 3px;
+      left: 3px;
       height: 12px;
       width: 12px;
     }

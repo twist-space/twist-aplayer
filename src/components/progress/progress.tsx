@@ -24,6 +24,7 @@ export function ProgressBar({
   onSeek,
 }: ProgressBarProps) {
   const nh = useNameHelper('aplayer-bar');
+  const nhi = useNameHelper('aplayer-icon')
   const progressBarRef = useRef<HTMLDivElement>(null);
 
   const [progress, setProgress] = useState(playedPercentage);
@@ -91,7 +92,7 @@ export function ProgressBar({
                 <span
                   className={nh.be('thumb')}
                 >
-                  <span className={nh.bm('loading')}>
+                  <span className={clsx(nhi.bs('loading'))}>
                     <TiLoading />
                   </span>
                 </span>
