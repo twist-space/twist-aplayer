@@ -18,25 +18,27 @@ const instances: HTMLAudioElement[] = [];
 function useCreateAudioElement(options?: CreateAudioElementOptions) {
   const audioElementRef = useRef<HTMLAudioElement>();
 
-  if (typeof window !== 'undefined' && !audioElementRef.current) {
-    const audio = (audioElementRef.current = document.createElement('audio'));
+  useEffect(() => {
+    if (typeof window !== 'undefined' && !audioElementRef.current) {
+      const audio = (audioElementRef.current = document.createElement('audio'));
 
-    if (typeof options?.src !== 'undefined') {
-      audio.src = options.src;
-    }
+      if (typeof options?.src !== 'undefined') {
+        audio.src = options.src;
+      }
 
-    if (typeof options?.autoPlay !== 'undefined') {
-      audio.autoplay = options.autoPlay;
-    }
+      if (typeof options?.autoPlay !== 'undefined') {
+        audio.autoplay = options.autoPlay;
+      }
 
-    if (typeof options?.initialVolume !== 'undefined') {
-      audio.volume = options.initialVolume;
-    }
+      if (typeof options?.initialVolume !== 'undefined') {
+        audio.volume = options.initialVolume;
+      }
 
-    if (!instances.includes(audio)) {
-      instances.push(audio);
+      if (!instances.includes(audio)) {
+        instances.push(audio);
+      }
     }
-  }
+  }, [options?.autoPlay, options?.initialVolume, options?.src]);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
