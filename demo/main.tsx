@@ -48,12 +48,7 @@ function App() {
   const [playlist] = useState<AudioInfo[]>(playlist1);
   const [theme, setTheme] = useState<Theme>('light');
   const changeTheme = (theme: Theme) => {
-    const bodyClassList = document.documentElement.classList;
-
-    bodyClassList.remove('twist-aplayer-dark');
-
     if (theme === 'light') {
-      bodyClassList.add('twist-aplayer-dark');
       document.documentElement.style.background = '#121212';
       setTheme('dark');
     } else {
@@ -96,6 +91,7 @@ function App() {
           appearance="fixed"
           initialLoop="all"
           mini={mini}
+          theme={theme}
         />
       </div>
       <div style={{ width: 600 }}>
@@ -103,6 +99,7 @@ function App() {
           audio={playlist}
           appearance="normal"
           initialLoop="all"
+          theme={theme}
         />
       </div>
     </div>

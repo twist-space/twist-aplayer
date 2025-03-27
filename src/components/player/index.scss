@@ -1,4 +1,36 @@
 .twist-aplayer {
+  &-light {
+    --tp-background: 0 0% 100%;
+    --tp-foreground: 240 10% 3.9%;
+    --tp-card: 0 0% 100%;
+    --tp-card-foreground: 240 10% 3.9%;
+    --tp-primary: 240 5.9% 10%;
+    --tp-primary-foreground: 0 0% 98%;
+    --tp-secondary: 240 4.8% 95.9%;
+    --tp-secondary-foreground: 240 5.9% 10%;
+    --tp-muted: 240 4.8% 95.9%;
+    --tp-muted-foreground: 240 3.8% 46.1%;
+    --tp-accent: 240 4.8% 95.9%;
+    --tp-accent-foreground: 240 5.9% 10%;
+    --tp-border: 240 5.9% 90%;
+  }
+
+  &-dark {
+    --tp-background: 240 10% 3.9%;
+    --tp-foreground: 0 0% 98%;
+    --tp-card: 240 10% 3.9%;
+    --tp-card-foreground: 0 0% 98%;
+    --tp-primary: 0 0% 98%;
+    --tp-primary-foreground: 240 5.9% 10%;
+    --tp-secondary: 240 3.7% 15.9%;
+    --tp-secondary-foreground: 0 0% 98%;
+    --tp-muted: 240 3.7% 15.9%;
+    --tp-muted-foreground: 240 5% 64.9%;
+    --tp-accent: 240 3.7% 15.9%;
+    --tp-accent-foreground: 0 0% 98%;
+    --tp-border: 240 3.7% 15.9%;
+  }
+
   &-vars {
     --tp-icon-width: 15px;
     --tp-icon-height: 15px;

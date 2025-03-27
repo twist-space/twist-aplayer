@@ -76,6 +76,11 @@ export interface APlayerProps {
    * @default false
    */
   listFolded?: boolean;
+  /**
+   * @description player theme, values: light, dark
+   * @default light
+   */
+  theme?: 'light' | 'dark'
 }
 
 export function TwistAPlayer({
@@ -89,6 +94,7 @@ export function TwistAPlayer({
   mini: _mini = false,
   mutex = true,
   listFolded = false,
+  theme = 'light'
 }: APlayerProps) {
   const nh = useNameHelper('aplayer');
   const playlist = usePlaylist(Array.isArray(audio) ? audio : [audio], {
@@ -223,6 +229,7 @@ export function TwistAPlayer({
 
   return (
     <div className={clsx(nh.b(), {
+      [nh.bs(theme)]: true,
       [nh.bs('vars')]: true,
       [nh.bm('fixed')]: appearance === 'fixed',
       [nh.bm('loading')]: audioControl.isLoading,
