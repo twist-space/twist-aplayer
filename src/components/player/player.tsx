@@ -80,7 +80,7 @@ export interface APlayerProps {
    * @description player theme, values: light, dark
    * @default light
    */
-  theme?: 'light' | 'dark'
+  theme?: 'light' | 'dark';
 }
 
 export function TwistAPlayer({
@@ -94,7 +94,7 @@ export function TwistAPlayer({
   mini: _mini = false,
   mutex = true,
   listFolded = false,
-  theme = 'light'
+  theme = 'light',
 }: APlayerProps) {
   const nh = useNameHelper('aplayer');
   const playlist = usePlaylist(Array.isArray(audio) ? audio : [audio], {

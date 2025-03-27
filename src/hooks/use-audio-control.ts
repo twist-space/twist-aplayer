@@ -18,7 +18,7 @@ const instances: HTMLAudioElement[] = [];
 function useCreateAudioElement(options?: CreateAudioElementOptions) {
   const audioElementRef = useRef<HTMLAudioElement>();
 
-  if (typeof document !== 'undefined' && !audioElementRef.current) {
+  if (typeof window !== 'undefined' && !audioElementRef.current) {
     const audio = (audioElementRef.current = document.createElement('audio'));
 
     if (typeof options?.src !== 'undefined') {
@@ -39,6 +39,8 @@ function useCreateAudioElement(options?: CreateAudioElementOptions) {
   }
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     const audio = audioElementRef.current;
 
     if (audio && options?.onError) {
@@ -53,6 +55,8 @@ function useCreateAudioElement(options?: CreateAudioElementOptions) {
   }, [options?.onError]);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     const audio = audioElementRef.current;
 
     if (audio && options?.onEnded) {
