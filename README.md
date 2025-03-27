@@ -1,21 +1,22 @@
 # twist-aplayer
 
 <p align="center">
-<img src="./screenshot/aplayer.svg" alt="ADPlayer" width="100">
+<img src="https://assets.razzh.cn/aplayer/aplayer.svg" alt="ADPlayer" width="100">
 </p>
 <h1 align="center">Twist APlayer</h1>
 
-> a shadcn ui theme aplayer for your React application.
+> A shadcn ui theme aplayer for your React application.
 
-![image](./screenshot/aplayer-light.png)
-![image](./screenshot/aplayer-dark.png)
+![image](https://assets.razzh.cn/aplayer/aplayer-light.png)
+![image](https://assets.razzh.cn/aplayer/aplayer-dark.png)
 
 ## Features
-Twist Aplayer supports: 
+Twist Aplayer supports:
 - Mini mode
 - Playlist - Lyrics
 - Light or dark theme switch
 - Custom theme color with component-level variables
+- SSR compatibility
 
 ## Usage
 
@@ -104,7 +105,7 @@ export interface APlayerProps {
    * @description player theme, values: light, dark
    * @default light
    */
-  theme?: 'light' | 'dark'
+  theme?: 'light' | 'dark';
 }
 ```
 
