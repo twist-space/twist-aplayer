@@ -20,17 +20,6 @@
     "twist"
   ],
   "sideEffects": ["*.css"],
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
-    },
-    "./dist/index.css": {
-      "import": "./dist/index.css",
-      "require": "./dist/index.css"
-    }
-  },
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "unpkg": "dist/twist-aplayer.umd.js",
