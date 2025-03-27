@@ -71,6 +71,11 @@ export interface APlayerProps {
    * @default true
    */
   mutex?: boolean;
+  /**
+   * @description indicate whether list should folded at first
+   * @default false
+   */
+  listFolded?: boolean;
 }
 
 export function TwistAPlayer({
@@ -83,6 +88,7 @@ export function TwistAPlayer({
   listMaxHeight = 250,
   mini: _mini = false,
   mutex = true,
+  listFolded = false,
 }: APlayerProps) {
   const nh = useNameHelper('aplayer');
   const playlist = usePlaylist(Array.isArray(audio) ? audio : [audio], {
@@ -188,7 +194,7 @@ export function TwistAPlayer({
     [cancelAutoSkip, prioritize],
   );
 
-  const [isPlaylistOpen, setPlaylistOpen] = useState(() => hasPlaylist);
+  const [isPlaylistOpen, setPlaylistOpen] = useState(() => hasPlaylist && !listFolded);
 
   const [mini, setMini] = useState(_mini);
 
