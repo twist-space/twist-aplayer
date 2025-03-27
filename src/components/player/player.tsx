@@ -48,6 +48,10 @@ export interface APlayerProps {
    * @default 250
    */
   listMaxHeight?: number;
+  /**
+   * @default false
+   */
+  mini?: boolean;
 }
 
 export function TwistAPlayer({
@@ -58,6 +62,7 @@ export function TwistAPlayer({
   initialOrder,
   autoPlay = false,
   listMaxHeight = 250,
+  mini: _mini = false,
 }: APlayerProps) {
   const nh = useNameHelper('aplayer');
   const playlist = usePlaylist(Array.isArray(audio) ? audio : [audio], {
@@ -161,11 +166,15 @@ export function TwistAPlayer({
 
   const [isPlaylistOpen, setPlaylistOpen] = useState(() => hasPlaylist);
 
-  const [mini, setMini] = useState(false);
+  const [mini, setMini] = useState(_mini);
 
   const [displayLyrics, setDisplayLyrics] = useState(true);
 
   const bodyRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setMini(_mini);
+  }, [_mini]);
 
   useEffect(() => {
     if (appearance === 'fixed') {

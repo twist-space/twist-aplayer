@@ -61,6 +61,7 @@ function App() {
       document.documentElement.style.background = '#ffffff';
     }
   };
+  const [mini, setMini] = useState(false);
 
   return (
     <div
@@ -73,17 +74,28 @@ function App() {
         justifyContent: 'center',
       }}
     >
-      <button
-        onClick={() => changeTheme(theme)}
-        type="button"
+      <div style={{
+        display: 'flex',
+        gap: '10px',
+        marginBottom: '20px',
+      }}
       >
-        切换主题
-      </button>
+        <button
+          onClick={() => changeTheme(theme)}
+          type="button"
+        >
+          切换主题
+        </button>
+        <button onClick={() => setMini(!mini)} type="button">
+          切换mini
+        </button>
+      </div>
       <div style={{ width: 600 }}>
         <TwistAPlayer
           audio={playlist}
           appearance="fixed"
           initialLoop="all"
+          mini={mini}
         />
       </div>
       <div style={{ width: 600 }}>
