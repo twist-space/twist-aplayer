@@ -21,7 +21,6 @@ export default defineConfig({
   },
   build: {
     outDir: join(ROOT, './dist'),
-    cssMinify: false,
     emptyOutDir: false,
     lib: {
       entry: join(ROOT, './src/index.ts'),
