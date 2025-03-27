@@ -5,7 +5,9 @@ import { Playlist } from '@/components/list';
 import { Lyrics } from '@/components/lyrics';
 import { useAudioControl } from '@/hooks/use-audio-control';
 import { useNameHelper } from '@/hooks/use-name-helper';
+import { useNotice } from '@/hooks/use-notice';
 import { usePlaylist } from '@/hooks/use-playlist';
+import { useSetTimeout } from '@/hooks/use-set-timeout';
 import {
   IonPause as IconPause,
   IonIosArrowForward as IconRight,
@@ -71,6 +73,21 @@ export function TwistAPlayer({
     getSongId: song => song.url,
   });
 
+  const [notice, showNotice] = useNotice();
+
+  const setTimeout = useSetTimeout();
+
+  const autoSkipTimeoutRef = useRef<
+  ReturnType<typeof setTimeout> | undefined
+  >();
+
+  const cancelAutoSkip = useCallback(() => {
+    if (autoSkipTimeoutRef.current) {
+      clearTimeout(autoSkipTimeoutRef.current);
+      autoSkipTimeoutRef.current = undefined;
+    }
+  }, []);
+
   const audioControl = useAudioControl({
     src: playlist.currentSong.url,
     initialVolume: volume,
@@ -79,15 +96,15 @@ export function TwistAPlayer({
       const { error } = e.target as HTMLAudioElement;
 
       if (error) {
-        // showNotice(
-        //   'An audio error has occurred, player will skip forward in 2 seconds.',
-        // );
+        showNotice(
+          'An audio error has occurred, player will skip forward in 2 seconds.',
+        );
       }
-      // if (playlist.hasNextSong) {
-      //   autoSkipTimeoutRef.current = setTimeout(() => {
-      //     playlist.next();
-      //   }, 2000);
-      // }
+      if (playlist.hasNextSong) {
+        autoSkipTimeoutRef.current = setTimeout(() => {
+          playlist.next();
+        }, 2000);
+      }
     },
     onEnded() {
       if (playlist.hasNextSong) {
@@ -95,18 +112,6 @@ export function TwistAPlayer({
       }
     },
   });
-
-  const autoSkipTimeoutRef = useRef<
-  ReturnType<typeof setTimeout> | undefined
-  >();
-  // const setTimeout = useSetTimeout();
-
-  const cancelAutoSkip = useCallback(() => {
-    if (autoSkipTimeoutRef.current) {
-      clearTimeout(autoSkipTimeoutRef.current);
-      autoSkipTimeoutRef.current = undefined;
-    }
-  }, []);
 
   useEffect(() => {
     if (autoPlay) {
@@ -268,6 +273,9 @@ export function TwistAPlayer({
               setDisplayLyrics(prev => !prev);
             }}
           />
+        </div>
+        <div className={nh.be('notice')} style={notice.style}>
+          {notice.text}
         </div>
         <div
           className={nh.be('miniswitcher')}
