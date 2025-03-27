@@ -8,6 +8,7 @@
 > A shadcn ui theme aplayer for your React application.
 
 ![image](https://assets.razzh.cn/aplayer/aplayer-light.png)
+
 ![image](https://assets.razzh.cn/aplayer/aplayer-dark.png)
 
 ## Features
@@ -18,6 +19,9 @@ Twist Aplayer supports:
 - Light or dark theme switch
 - Custom theme color with component-level variables
 - SSR compatibility
+- Accessible friendly
+
+Inner icons powered by [twist-icons](https://github.com/twist-space/twist-icons) !
 
 ## Usage
 
@@ -114,6 +118,9 @@ export interface APlayerProps {
   border?: boolean;
 }
 ```
+
+## How to make lrc?
+I recommand [lrc generator site](https://www.lrcgenerator.com/), it can easy to make lrc!
 
 ## Credits
 
