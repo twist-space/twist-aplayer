@@ -81,6 +81,11 @@ export interface APlayerProps {
    * @default light
    */
   theme?: 'light' | 'dark';
+  /**
+   * @description user border, it can accent border if use dark mode.
+   * @default false
+   */
+  border?: boolean;
 }
 
 export function TwistAPlayer({
@@ -95,6 +100,7 @@ export function TwistAPlayer({
   mutex = true,
   listFolded = false,
   theme = 'light',
+  border = false,
 }: APlayerProps) {
   const nh = useNameHelper('aplayer');
   const playlist = usePlaylist(Array.isArray(audio) ? audio : [audio], {
@@ -231,11 +237,13 @@ export function TwistAPlayer({
     <div className={clsx(nh.b(), {
       [nh.bs(theme)]: true,
       [nh.bs('vars')]: true,
-      [nh.bm('fixed')]: appearance === 'fixed',
+      [nh.bm(appearance)]: true,
       [nh.bm('loading')]: audioControl.isLoading,
       [nh.bm('withlist')]: hasPlaylist,
+      [nh.bm('list-folded')]: !isPlaylistOpen,
       [nh.bm('withlrc')]: Boolean(playlist.currentSong.lrc) && appearance !== 'fixed',
       [nh.bm('narrow')]: mini,
+      [nh.bm('border')]: border,
     })}
     >
       <div ref={bodyRef} className={nh.be('body')}>

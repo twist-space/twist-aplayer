@@ -11,6 +11,7 @@
 ![image](https://assets.razzh.cn/aplayer/aplayer-dark.png)
 
 ## Features
+
 Twist Aplayer supports:
 - Mini mode
 - Playlist - Lyrics
@@ -37,7 +38,7 @@ render(
       artist: 'Helios',
       url: 'https://music.163.com/#/song?id=1919555788&userid=122967305',
     }}
-    autoPlay
+    theme="dark"
   />
 );
 ```
@@ -106,6 +107,11 @@ export interface APlayerProps {
    * @default light
    */
   theme?: 'light' | 'dark';
+  /**
+   * @description user border, it can accent border if use dark mode.
+   * @default false
+   */
+  border?: boolean;
 }
 ```
 

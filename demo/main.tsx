@@ -85,6 +85,7 @@ function App() {
           切换mini
         </button>
       </div>
+      {/* fixed */}
       <div style={{ width: 600 }}>
         <TwistAPlayer
           audio={playlist}
@@ -94,12 +95,14 @@ function App() {
           theme={theme}
         />
       </div>
+      {/* normal */}
       <div style={{ width: 600 }}>
         <TwistAPlayer
           audio={playlist}
           appearance="normal"
           initialLoop="all"
           theme={theme}
+          border
         />
       </div>
     </div>
