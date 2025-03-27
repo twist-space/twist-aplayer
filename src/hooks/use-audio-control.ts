@@ -4,6 +4,7 @@ import { useSyncExternalStore } from 'use-sync-external-store/shim/index.js';
 
 type CreateAudioElementOptions = {
   initialVolume?: number;
+  mutex?: boolean;
 } & Pick<
   React.DetailedHTMLProps<
     React.AudioHTMLAttributes<HTMLAudioElement>,
@@ -11,6 +12,8 @@ type CreateAudioElementOptions = {
   >,
   'src' | 'autoPlay' | 'onEnded' | 'onError'
 >;
+
+const instances: HTMLAudioElement[] = [];
 
 function useCreateAudioElement(options?: CreateAudioElementOptions) {
   const audioElementRef = useRef<HTMLAudioElement>();
@@ -28,6 +31,10 @@ function useCreateAudioElement(options?: CreateAudioElementOptions) {
 
     if (typeof options?.initialVolume !== 'undefined') {
       audio.volume = options.initialVolume;
+    }
+
+    if (!instances.includes(audio)) {
+      instances.push(audio);
     }
   }
 
@@ -67,6 +74,13 @@ function useCreateAudioElement(options?: CreateAudioElementOptions) {
       if (audio) {
         audio.pause();
         audio.currentTime = 0;
+
+        // destory current instance
+        const index = instances.indexOf(audio);
+
+        if (index !== -1) {
+          instances.splice(index, 1);
+        }
       }
       audioElementRef.current = undefined;
     };
@@ -78,10 +92,24 @@ function useCreateAudioElement(options?: CreateAudioElementOptions) {
 export function useAudioControl(options: CreateAudioElementOptions) {
   const audioElementRef = useCreateAudioElement(options);
 
+  const pauseOtherInstance = useCallback((audio: HTMLAudioElement) => {
+    for (let i = 0; i < instances.length; i++) {
+      const instance = instances[i];
+
+      if (instance !== audio && !instance.paused) {
+        instance.pause();
+      }
+    }
+  }, []);
+
   const playAudio = useCallback(
     async (src: string) => {
       const audio = audioElementRef.current;
       if (audio) {
+        if (options.mutex) {
+          pauseOtherInstance(audio);
+        }
+
         if (audio.src !== src) {
           audio.pause();
           audio.currentTime = 0;
@@ -94,7 +122,7 @@ export function useAudioControl(options: CreateAudioElementOptions) {
         }
       }
     },
-    [audioElementRef],
+    [audioElementRef, options.mutex, pauseOtherInstance],
   );
 
   const togglePlay = useCallback(

@@ -54,6 +54,10 @@ export interface APlayerProps {
    * @default false
    */
   mini?: boolean;
+  /**
+   * @default true
+   */
+  mutex?: boolean;
 }
 
 export function TwistAPlayer({
@@ -65,6 +69,7 @@ export function TwistAPlayer({
   autoPlay = false,
   listMaxHeight = 250,
   mini: _mini = false,
+  mutex = true,
 }: APlayerProps) {
   const nh = useNameHelper('aplayer');
   const playlist = usePlaylist(Array.isArray(audio) ? audio : [audio], {
@@ -92,6 +97,7 @@ export function TwistAPlayer({
     src: playlist.currentSong.url,
     initialVolume: volume,
     autoPlay,
+    mutex,
     onError(e) {
       const { error } = e.target as HTMLAudioElement;
 
