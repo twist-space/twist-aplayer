@@ -167,9 +167,9 @@
     border-top: none;
   }
 
-  &--normal#{&}--withlist &__info {
-    border-bottom: 1px solid hsl(var(--tp-border));
-  }
+  // &--normal#{&}--withlist &__info {
+  //   border-bottom: 1px solid hsl(var(--tp-border));
+  // }
 
   &--normal#{&}--border#{&}--list-folded &__info,
   &--withlist#{&}--list-folded &__info {
