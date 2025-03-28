@@ -33,10 +33,10 @@ Import TwistAPlayer component from twist-aplayer package, and import stylesheet.
 
 ```tsx
 import { TwistAPlayer } from 'twist-aplayer';
-import 'twist-aplayer/dist/index.css';
+import 'twist-aplayer/dist/index.min.css';
 
 render(
-  <APlayer
+  <TwistAPlayer
     audio={{
       name: 'ヘリオス',
       artist: 'Helios',
