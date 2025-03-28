@@ -330,7 +330,7 @@ export function TwistAPlayer({
           className={nh.be('miniswitcher')}
           onClick={() => setMini(prev => !prev)}
         >
-          <button className={nh.bs('icon')} type="button">
+          <button className={clsx(nh.bs('icon'), nh.bs('icon-right'))} type="button">
             <IconRight />
           </button>
         </div>

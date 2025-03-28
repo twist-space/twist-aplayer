@@ -195,6 +195,12 @@
     display: inline;
   }
 
+  &--fixed &-icon-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   &--fixed &-icon-back,
   &--fixed &-icon-forward,
   &--fixed &-icon-lrc,
