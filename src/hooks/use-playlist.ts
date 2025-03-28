@@ -85,7 +85,7 @@ export function usePlaylist<T, K>(
     if (nextSong) {
       setCurrentSong(nextSong);
     }
-  }, [nextSong, loop]);
+  }, [nextSong]);
 
   const previous = useCallback(() => {
     setCurrentSong((prev) => {

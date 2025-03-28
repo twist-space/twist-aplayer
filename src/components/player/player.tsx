@@ -150,26 +150,6 @@ export function TwistAPlayer({
     },
   });
 
-  useEffect(() => {
-    if (autoPlay) {
-      audioControl.playAudio(playlist.currentSong.url);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const isInitialEffectRef = useRef(true);
-
-  useEffect(() => {
-    if (isInitialEffectRef.current) {
-      isInitialEffectRef.current = false;
-    } else {
-      if (playlist.currentSong) {
-        audioControl.playAudio(playlist.currentSong.url);
-      }
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [playlist.currentSong, audioControl.playAudio]);
-
   const handlePlayButtonClick = useCallback(() => {
     cancelAutoSkip();
     audioControl.togglePlay(playlist.currentSong.url);
@@ -217,6 +197,34 @@ export function TwistAPlayer({
   useEffect(() => {
     setMini(_mini);
   }, [_mini]);
+
+  useEffect(() => {
+    if (autoPlay) {
+      audioControl.playAudio(playlist.currentSong.url);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const prevSongUrl = useRef<string | null>(null);
+  const isInitialEffectRef = useRef(true);
+
+  useEffect(() => {
+    if (!playlist.currentSong) return;
+
+    const currentUrl = playlist.currentSong.url;
+
+    if (isInitialEffectRef.current) {
+      isInitialEffectRef.current = false;
+      prevSongUrl.current = currentUrl;
+      return;
+    }
+
+    if (playlist.loop === 'one' || currentUrl !== prevSongUrl.current) {
+      audioControl.playAudio(currentUrl);
+      prevSongUrl.current = currentUrl;
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [playlist.currentSong, playlist.loop]);
 
   useEffect(() => {
     if (appearance === 'fixed') {
