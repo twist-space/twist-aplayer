@@ -214,7 +214,8 @@
 
   &--fixed &-icon-back,
   &--fixed &-icon-forward,
-  &--fixed &-icon-play {
+  &--fixed &-icon-play,
+  &--fixed &-icon-menu {
     font-size: 20px;
   }
 
@@ -357,6 +358,11 @@
     cursor: default;
     padding-bottom: 2px;
     height: 20px;
+  }
+
+  &-controller__time &-icon {
+    cursor: pointer;
+    transition: all .2s ease;
   }
   
   &__notice {

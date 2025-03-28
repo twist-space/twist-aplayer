@@ -91,7 +91,11 @@ export function PlaybackControls({
   }, [loop, onLoopChange]);
 
   return (
-    <div className={clsx(nh.b(), nh.bs('vars'))}>
+    <div
+      className={clsx(nh.b(), nh.bs('vars'))}
+      role="group"
+      aria-label="Audio Controls"
+    >
       <ProgressBar
         playedPercentage={
           typeof currentTime === 'undefined'
@@ -108,7 +112,7 @@ export function PlaybackControls({
         onSeek={progress => onSeek?.(progress * audioDurationSeconds!)}
       />
       <div className={nh.be('time')}>
-        <span className={nh.be('time-inner')}>
+        <span className={nh.be('time-inner')} aria-live="polite">
           <span className={nh.be('ptime')}>
             {formatAudioDuration(currentTime)}
           </span>
@@ -117,18 +121,30 @@ export function PlaybackControls({
             {formatAudioDuration(audioDurationSeconds)}
           </span>
         </span>
-        <span className={clsx(nhi.b(), nhi.bs('back'))} onClick={onSkipBack}>
+        <button
+          className={clsx(nhi.b(), nhi.bs('back'))}
+          onClick={onSkipBack}
+          type="button"
+          aria-label="Previous track"
+        >
           <IconBack />
-        </span>
-        <span className={clsx(nhi.b(), nhi.bs('play'))} onClick={onTogglePlay}>
+        </button>
+        <button
+          className={clsx(nhi.b(), nhi.bs('play'))}
+          onClick={onTogglePlay}
+          type="button"
+          aria-label={isPlaying ? 'Pause audio' : 'Play audio'}
+        >
           {isPlaying ? <IconPause /> : <IconPlay />}
-        </span>
-        <span
+        </button>
+        <button
           className={clsx(nhi.b(), nhi.bs('forward'))}
           onClick={onSkipForward}
+          type="button"
+          aria-label="Next track"
         >
           <IconForward />
-        </span>
+        </button>
         <Volume
           volume={volume}
           muted={muted}
@@ -139,6 +155,7 @@ export function PlaybackControls({
           className={clsx(nhi.b(), nhi.bs('order'))}
           onClick={handleOrderButtonClick}
           type="button"
+          aria-label={`Playback order: ${order}`}
         >
           {{ list: <IconOrderList />, random: <IconOrderRandom /> }[order]}
         </button>
@@ -146,6 +163,7 @@ export function PlaybackControls({
           className={clsx(nhi.b(), nhi.bs('order'))}
           onClick={handleLoopButtonClick}
           type="button"
+          aria-label={`Loop mode: ${loop}`}
         >
           {
             {
@@ -159,6 +177,7 @@ export function PlaybackControls({
           type="button"
           className={clsx(nhi.b(), nhi.bs('menu'))}
           onClick={() => onToggleMenu?.()}
+          aria-label="Toggle playlist menu"
         >
           <IconMenu />
         </button>
@@ -168,6 +187,8 @@ export function PlaybackControls({
             [nhi.ns('lrc-inactivity')]: !showLyrics,
           })}
           onClick={onToggleLyrics}
+          aria-label={showLyrics ? 'Hide lyrics' : 'Show lyrics'}
+          aria-pressed={showLyrics}
         >
           <IconLyric />
         </button>

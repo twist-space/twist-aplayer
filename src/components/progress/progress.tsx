@@ -71,6 +71,12 @@ export function ProgressBar({
       ref={progressBarRef}
       className={clsx(nh.b(), nh.bs('vars'))}
       onMouseDown={handleMouseDown}
+      role="slider"
+      aria-label="Audio progress"
+      aria-valuenow={progress ? progress * 100 : 0}
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-live="polite"
     >
       <div className={nh.be('inner')}>
         {typeof bufferedPercentage !== 'undefined'

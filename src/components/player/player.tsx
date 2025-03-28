@@ -234,31 +234,40 @@ export function TwistAPlayer({
   }, [appearance]);
 
   return (
-    <div className={clsx(nh.b(), {
-      [nh.bs(theme)]: true,
-      [nh.bs('vars')]: true,
-      [nh.bm(appearance)]: true,
-      [nh.bm('loading')]: audioControl.isLoading,
-      [nh.bm('withlist')]: hasPlaylist,
-      [nh.bm('list-folded')]: !isPlaylistOpen,
-      [nh.bm('withlrc')]: Boolean(playlist.currentSong.lrc) && appearance !== 'fixed',
-      [nh.bm('narrow')]: mini,
-      [nh.bm('border')]: border,
-    })}
+    <div
+      className={clsx(nh.b(), {
+        [nh.bs(theme)]: true,
+        [nh.bs('vars')]: true,
+        [nh.bm(appearance)]: true,
+        [nh.bm('loading')]: audioControl.isLoading,
+        [nh.bm('withlist')]: hasPlaylist,
+        [nh.bm('list-folded')]: !isPlaylistOpen,
+        [nh.bm('withlrc')]: Boolean(playlist.currentSong.lrc) && appearance !== 'fixed',
+        [nh.bm('narrow')]: mini,
+        [nh.bm('border')]: border,
+      })}
+      role="region"
+      aria-label="Audio Player"
     >
-      <div ref={bodyRef} className={nh.be('body')}>
+      <div
+        ref={bodyRef}
+        className={nh.be('body')}
+      >
         <div
           className={nh.be('pic')}
           onClick={handlePlayButtonClick}
           style={{
             backgroundImage: `url("${playlist.currentSong?.cover}")`,
           }}
+          role="button"
+          aria-label={audioControl.isPlaying ? 'Pause audio' : 'Play audio'}
         >
           <div
             className={clsx(
               nh.be('button'),
               audioControl.isPlaying ? nh.bm('pause') : nh.bm('play'),
             )}
+            role="presentation"
           >
             {audioControl.isPlaying ? <IconPause /> : <IconPlay />}
           </div>

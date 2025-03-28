@@ -51,6 +51,8 @@ export function Playlist({
       className={clsx(nh.b(), {
         [nh.bm('hide')]: !open,
       })}
+      aria-label="Audio playlist"
+      aria-live="polite"
     >
       <ol style={olStyle}>
         {audio.map((audioInfo, index) => (
@@ -64,6 +66,8 @@ export function Playlist({
                 onPlayAudio?.(audioInfo);
               }
             }}
+            role="button"
+            aria-label={`${audioInfo.name ?? 'Audio name'} by ${renderArtist(audioInfo.artist)}}`}
           >
             <span className={nh.be('cur')}>
             </span>

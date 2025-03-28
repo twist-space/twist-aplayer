@@ -55,6 +55,7 @@ export function Volume({
         type="button"
         className={clsx(nhi.b(), nhi.bs('volume-down'))}
         onClick={() => onToggleMuted()}
+        aria-label={muted || !volume ? 'Muted' : 'unMuted'}
       >
         {muted || !volume
           ? (
