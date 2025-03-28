@@ -1,7 +1,7 @@
 # twist-aplayer
 
 <p align="center">
-<img src="https://assets.razzh.cn/aplayer/aplayer.svg" alt="ADPlayer" width="100">
+<img src="https://assets.razzh.cn/aplayer/aplayer.svg" alt="twist aplayer" width="100">
 </p>
 <h1 align="center">Twist APlayer</h1>
 
@@ -21,7 +21,7 @@ Twist Aplayer supports:
 - SSR compatibility
 - Accessible friendly
 
-Inner icons powered by [twist-icons](https://github.com/twist-space/twist-icons) !
+Twist Aplayer icons powered by [twist-icons](https://github.com/twist-space/twist-icons) !
 
 ## Usage
 
@@ -50,6 +50,21 @@ render(
 ### Interface
 
 ```ts
+export interface AudioInfo {
+  name?: string;
+  artist?: string | ArtistInfo;
+  url: string;
+  cover?: string;
+  lrc?: string;
+  theme?: string;
+  type?: 'auto' | 'hls' | 'normal';
+}
+
+export interface ArtistInfo {
+  name?: string;
+  url?: string;
+}
+
 export interface APlayerProps {
   /**
    * @description audio info, should be an object or object array
@@ -61,31 +76,26 @@ export interface APlayerProps {
    * @default 0.7
    */
   volume?: number;
-
   /**
    * @description values: 'normal', 'fixed'
    * @default "normal"
    */
   appearance?: 'normal' | 'fixed';
-
   /**
    * @description values: 'all' | 'one' | 'none'
    * @default "all"
    */
   initialLoop?: PlaylistLoop;
-
   /**
    * @description values: 'list' | 'random'
    * @default "list"
    */
   initialOrder?: PlaylistOrder;
-
   /**
    * @description audio autoplay
    * @default false
    */
   autoPlay?: boolean;
-
   /**
    * @description list max height
    * @default 250
@@ -119,8 +129,8 @@ export interface APlayerProps {
 }
 ```
 
-## How to make lrc?
-I recommand [lrc generator site](https://www.lrcgenerator.com/), it can easy to make lrc!
+## How to make LRC?
+I recommand [LRC generator site](https://www.lrcgenerator.com/), it can easy to make LRC!
 
 ## Credits
 
