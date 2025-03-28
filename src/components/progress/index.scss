@@ -9,8 +9,8 @@
     --tp-bar-width: 100%;
     --tp-bar-height: 2px;
     --tp-bar-background: hsl(var(--tp-primary) / .2);
-    --tp-bar-played-background: hsl(var(--tp-primary));
-    --tp-bar-loaded-background: hsl(var(--tp-foreground));
+    --tp-bar-played-background: hsl(var(--tp-accent-foreground));
+    --tp-bar-loaded-background: hsl(var(--tp-secondary));
     --tp-bar-loaded-transition-timing: .5s;
     --tp-bar-loaded-transition-function: ease;
     --tp-bar-thumb-width: 10px;
@@ -47,7 +47,7 @@
     top: 0;
     bottom: 0;
     height: var(--tp-bar-height);
-    background-color: var(--tp-bar-played-backgroun);
+    background-color: var(--tp-bar-played-background);
   }
 
   &__thumb {
