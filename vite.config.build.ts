@@ -25,7 +25,7 @@ export default defineConfig({
     lib: {
       entry: join(ROOT, './src/index.ts'),
       formats: ['es', 'cjs'],
-      cssFileName: 'index',
+      cssFileName: 'index.min',
       fileName: (format, entryName) => {
         if (format === 'es') {
           return `${entryName}.mjs`;
