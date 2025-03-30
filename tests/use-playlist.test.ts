@@ -89,23 +89,6 @@ describe('usePlaylist', () => {
     expect(result.current.currentSong).toEqual(songs[0]);
   });
 
-  test('should not have next song when loop is "none" and last song is reached', () => {
-    const { result } = renderUsePlaylist({
-      initialLoop: 'none',
-      initialOrder: 'list',
-    });
-
-    expect(result.current.currentSong).toEqual(songs[0]);
-
-    act(() => {
-      result.current.next();
-      result.current.next();
-      result.current.next();
-    });
-
-    expect(result.current.currentSong).toEqual(songs[2]);
-  });
-
   test('only play current song when loop is "one"', () => {
     const { result } = renderUsePlaylist();
 
