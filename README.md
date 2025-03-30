@@ -65,7 +65,7 @@ export interface ArtistInfo {
   url?: string;
 }
 
-export interface APlayerProps {
+export interface TwistAPlayerProps {
   /**
    * @description audio info, should be an object or object array
    */
