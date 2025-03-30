@@ -1,5 +1,5 @@
 import type { AudioInfo } from '../src/types';
-import React, { useState } from 'react';
+import React, { StrictMode, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { TwistAPlayer } from '../src';
 
@@ -109,4 +109,8 @@ function App() {
 
   );
 }
-createRoot(document.getElementById('root') as HTMLElement).render(<App />);
+createRoot(document.getElementById('root') as HTMLElement).render((
+  <StrictMode>
+    <App />
+  </StrictMode>
+));

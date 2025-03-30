@@ -139,17 +139,24 @@ export function TwistAPlayer({
   }, []);
 
   const isInitialEffectRef = useRef(true);
+  const prevSong = useRef(playlist.currentSong);
 
   useEffect(() => {
     if (isInitialEffectRef.current) {
       isInitialEffectRef.current = false;
-    } else {
-      if (playlist.currentSong) {
-        audioControl.playAudio(playlist.currentSong.url);
-      }
+      return;
+    }
+
+    // playlist.currentSong !== prevSong.current can avoid react strictMode twice render effect
+    if (playlist.currentSong && (
+      playlist.loop === 'one'
+      || playlist.currentSong !== prevSong.current
+    )) {
+      prevSong.current = playlist.currentSong;
+      audioControl.playAudio(playlist.currentSong.url);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [playlist.currentSong]);
+  }, [playlist.currentSong, playlist.loop]);
 
   useEffect(() => {
     if (appearance === 'fixed') {
