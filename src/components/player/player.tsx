@@ -1,5 +1,5 @@
-import type { PlaylistLoop, PlaylistOrder } from '@/hooks/use-playlist';
 import type { ArtistInfo, AudioInfo } from '@/types';
+import type { TwistAPlayerProps } from '../../types';
 import { PlaybackControls } from '@/components/controller';
 import { Playlist } from '@/components/list';
 import { Lyrics } from '@/components/lyrics';
@@ -17,77 +17,6 @@ import clsx from 'clsx';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import '../../styles/main.scss';
 
-/**
- * @see https://aplayer.js.org/#/home?id=options
- */
-export interface APlayerProps {
-  /**
-   * @description audio info, should be an object or object array
-   */
-  audio: AudioInfo | readonly AudioInfo[];
-  /**
-   * Initial volume
-   * @description default volume
-   * @default 0.7
-   */
-  volume?: number;
-
-  /**
-   * @description values: 'normal', 'fixed'
-   * @default "normal"
-   */
-  appearance?: 'normal' | 'fixed';
-
-  /**
-   * @description values: 'all' | 'one' | 'none'
-   * @default "all"
-   */
-  initialLoop?: PlaylistLoop;
-
-  /**
-   * @description values: 'list' | 'random'
-   * @default "list"
-   */
-  initialOrder?: PlaylistOrder;
-
-  /**
-   * @description audio autoplay
-   * @default false
-   */
-  autoPlay?: boolean;
-
-  /**
-   * @description list max height
-   * @default 250
-   */
-  listMaxHeight?: number;
-  /**
-   * @description enable mini mode
-   * @default false
-   */
-  mini?: boolean;
-  /**
-   * @default prevent to play multiple player at the same time, pause other players when this player start play
-   * @default true
-   */
-  mutex?: boolean;
-  /**
-   * @description indicate whether list should folded at first
-   * @default false
-   */
-  listFolded?: boolean;
-  /**
-   * @description player theme, values: light, dark
-   * @default light
-   */
-  theme?: 'light' | 'dark';
-  /**
-   * @description user border, it can accent border if use dark mode.
-   * @default false
-   */
-  border?: boolean;
-}
-
 export function TwistAPlayer({
   audio,
   appearance = 'normal',
@@ -101,12 +30,11 @@ export function TwistAPlayer({
   listFolded = false,
   theme = 'light',
   border = false,
-}: APlayerProps) {
+}: TwistAPlayerProps) {
   const nh = useNameHelper('aplayer');
   const playlist = usePlaylist(Array.isArray(audio) ? audio : [audio], {
     initialLoop,
     initialOrder,
-    getSongId: song => song.url,
   });
 
   const [notice, showNotice] = useNotice();
@@ -144,6 +72,11 @@ export function TwistAPlayer({
       }
     },
     onEnded() {
+      // only play current song when loop is "one"
+      if (playlist.loop === 'one') {
+        playlist.prioritize({ ...playlist.currentSong });
+        return;
+      }
       if (playlist.hasNextSong) {
         playlist.next();
       }
@@ -205,26 +138,18 @@ export function TwistAPlayer({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const prevSongUrl = useRef<string | null>(null);
   const isInitialEffectRef = useRef(true);
 
   useEffect(() => {
-    if (!playlist.currentSong) return;
-
-    const currentUrl = playlist.currentSong.url;
-
     if (isInitialEffectRef.current) {
       isInitialEffectRef.current = false;
-      prevSongUrl.current = currentUrl;
-      return;
-    }
-
-    if (playlist.loop === 'one' || currentUrl !== prevSongUrl.current) {
-      audioControl.playAudio(currentUrl);
-      prevSongUrl.current = currentUrl;
+    } else {
+      if (playlist.currentSong) {
+        audioControl.playAudio(playlist.currentSong.url);
+      }
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [playlist.currentSong, playlist.loop]);
+  }, [playlist.currentSong]);
 
   useEffect(() => {
     if (appearance === 'fixed') {
