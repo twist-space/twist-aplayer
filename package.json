@@ -1,7 +1,7 @@
 {
   "name": "twist-aplayer",
   "type": "module",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "private": false,
   "description": "A shadui theme aplayer",
   "author": {
@@ -40,8 +40,7 @@
     "prepublishOnly": "pnpm build"
   },
   "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^18.2.0"
   },
   "dependencies": {
     "@twistify/react-icons": "^1.0.4",
