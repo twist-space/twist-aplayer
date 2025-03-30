@@ -29,6 +29,7 @@ export interface PlaylistOptions {
 }
 
 type PlaylistState<T> = Readonly<{
+  list: T[];
   currentSong: T;
   hasNextSong: boolean;
   next: () => void;
@@ -45,7 +46,7 @@ type PlaylistState<T> = Readonly<{
  * Controls what to play next
  */
 export function usePlaylist(
-  songs: readonly AudioInfo[],
+  songs: AudioInfo[],
   options: PlaylistOptions,
 ): PlaylistState<AudioInfo> {
   const { initialLoop = 'all', initialOrder = 'list' } = options;
@@ -120,6 +121,7 @@ export function usePlaylist(
   }, [list, getSong, currentSong]);
 
   return {
+    list,
     currentSong,
     hasNextSong,
     next,

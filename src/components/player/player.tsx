@@ -52,6 +52,8 @@ export function TwistAPlayer({
     }
   }, []);
 
+  const isLoopNoonLastSongEndingRef = useRef(false);
+
   const audioControl = useAudioControl({
     src: playlist.currentSong.url,
     initialVolume: volume,
@@ -72,7 +74,9 @@ export function TwistAPlayer({
       }
     },
     onEnded() {
-      const { currentSong, loop, prioritize, hasNextSong } = playlist
+      const { list, currentSong, loop, prioritize, hasNextSong } = playlist
+      const { audio } = audioControl
+
       // only play current song when loop is "one"
       if (loop === 'one') {
         prioritize({ ...currentSong });
@@ -81,9 +85,11 @@ export function TwistAPlayer({
 
       // in last songs and loop is "none"
       if (!hasNextSong && loop === 'none') {
-        const { audio } = audioControl
-        audio!.currentTime = 0; 
+        isLoopNoonLastSongEndingRef.current = true;
+        audio!.currentTime = 0;
         audio!.pause();
+        audio!.src = list[0].url
+        prioritize(list[0])
         return;
       }
 
@@ -148,10 +154,15 @@ export function TwistAPlayer({
 
   const isInitialEffectRef = useRef(true);
   const prevSong = useRef(playlist.currentSong);
-
+  
   useEffect(() => {
     if (isInitialEffectRef.current) {
       isInitialEffectRef.current = false;
+      return;
+    }
+
+    if (isLoopNoonLastSongEndingRef.current) {
+      isLoopNoonLastSongEndingRef.current = false;
       return;
     }
 
