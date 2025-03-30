@@ -332,6 +332,7 @@ export function useAudioControl(options: CreateAudioElementOptions) {
   );
 
   return {
+    audio: audioElementRef.current,
     playAudio,
     togglePlay,
     seek,

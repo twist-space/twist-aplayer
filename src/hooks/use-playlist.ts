@@ -87,11 +87,7 @@ export function usePlaylist(
         return list[currentSongIndex + 1];
       }
 
-      // if loop is 'all', just return first song
-      if (loop !== 'none') return list[0];
-
-      // if loop is 'none' and it is the last song, just return currentSong
-      return prevSong;
+      return { ...list[0] };
     });
   }, [loop, list, getSong]);
 

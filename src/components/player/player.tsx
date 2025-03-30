@@ -72,14 +72,22 @@ export function TwistAPlayer({
       }
     },
     onEnded() {
+      const { currentSong, loop, prioritize, hasNextSong } = playlist
       // only play current song when loop is "one"
-      if (playlist.loop === 'one') {
-        playlist.prioritize({ ...playlist.currentSong });
+      if (loop === 'one') {
+        prioritize({ ...currentSong });
         return;
       }
-      if (playlist.hasNextSong) {
-        playlist.next();
+
+      // in last songs and loop is "none"
+      if (!hasNextSong && loop === 'none') {
+        const { audio } = audioControl
+        audio!.currentTime = 0; 
+        audio!.pause();
+        return;
       }
+
+      playlist.next();
     },
   });
 
@@ -156,7 +164,7 @@ export function TwistAPlayer({
       audioControl.playAudio(playlist.currentSong.url);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [playlist.currentSong, playlist.loop]);
+  }, [playlist.currentSong]);
 
   useEffect(() => {
     if (appearance === 'fixed') {
