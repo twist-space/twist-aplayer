@@ -1,13 +1,14 @@
-import type { ArtistInfo, AudioInfo } from '@/types';
-import type { TwistAPlayerProps } from '../../types';
+import type { ArtistInfo, AudioInfo, TwistAPlayerProps } from '@/types';
 import { PlaybackControls } from '@/components/controller';
 import { Playlist } from '@/components/list';
 import { Lyrics } from '@/components/lyrics';
-import { useAudioControl } from '@/hooks/use-audio-control';
-import { useNameHelper } from '@/hooks/use-name-helper';
-import { useNotice } from '@/hooks/use-notice';
-import { usePlaylist } from '@/hooks/use-playlist';
-import { useSetTimeout } from '@/hooks/use-set-timeout';
+import {
+  useAudioControl,
+  useNameHelper,
+  useNotice,
+  usePlaylist,
+  useSetTimeout,
+} from '@/hooks';
 import {
   IonPause as IconPause,
   IonIosArrowForward as IconRight,
@@ -74,8 +75,8 @@ export function TwistAPlayer({
       }
     },
     onEnded() {
-      const { list, currentSong, loop, prioritize, hasNextSong } = playlist
-      const { audio } = audioControl
+      const { list, currentSong, loop, prioritize, hasNextSong } = playlist;
+      const { audio } = audioControl;
 
       // only play current song when loop is "one"
       if (loop === 'one') {
@@ -88,8 +89,8 @@ export function TwistAPlayer({
         isLoopNoonLastSongEndingRef.current = true;
         audio!.currentTime = 0;
         audio!.pause();
-        audio!.src = list[0].url
-        prioritize(list[0])
+        audio!.src = list[0].url;
+        prioritize(list[0]);
         return;
       }
 
@@ -154,7 +155,7 @@ export function TwistAPlayer({
 
   const isInitialEffectRef = useRef(true);
   const prevSong = useRef(playlist.currentSong);
-  
+
   useEffect(() => {
     if (isInitialEffectRef.current) {
       isInitialEffectRef.current = false;
