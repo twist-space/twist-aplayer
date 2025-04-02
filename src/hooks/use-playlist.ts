@@ -4,13 +4,13 @@ import { shuffle } from '../utils/shuffle';
 
 /**
  * @type all
- * @description List loop, when the last songs is ended the first songs will played
+ * @description List loop, when the last songs is ended the first songs will played.
  *
  * @type one
- * @description Single song loop
+ * @description Single song loop.
  *
  * @type none
- * @description Not loop, will not play after the last songs ended
+ * @description Not loop, when the last song plays, jump to the first song, but not played.
  */
 export type PlaylistLoop = 'all' | 'one' | 'none';
 

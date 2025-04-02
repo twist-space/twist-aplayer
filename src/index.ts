@@ -1,2 +1,2 @@
-export * from './components/player';
+export * from './player';
 export type * from './types';

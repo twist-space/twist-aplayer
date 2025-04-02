@@ -1,13 +1,10 @@
-import type { ArtistInfo, AudioInfo, TwistAPlayerProps } from '@/types';
+import type { ArtistInfo, TwistAPlayerProps } from '@/types';
 import { PlaybackControls } from '@/components/controller';
 import { Playlist } from '@/components/list';
 import { Lyrics } from '@/components/lyrics';
 import {
-  useAudioControl,
   useNameHelper,
-  useNotice,
-  usePlaylist,
-  useSetTimeout,
+  usePlayer,
 } from '@/hooks';
 import {
   IonPause as IconPause,
@@ -15,93 +12,32 @@ import {
 } from '@twistify/react-icons/ion';
 import { TiPlay as IconPlay } from '@twistify/react-icons/ti';
 import clsx from 'clsx';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import '../../styles/main.scss';
+import { useCallback } from 'react';
+import './styles/main.scss';
 
-export function TwistAPlayer({
-  audio,
-  appearance = 'normal',
-  volume = 0.7,
-  initialLoop,
-  initialOrder,
-  autoPlay = false,
-  listMaxHeight = 250,
-  mini: _mini = false,
-  mutex = true,
-  listFolded = false,
-  theme = 'light',
-  border = false,
-}: TwistAPlayerProps) {
+export function TwistAPlayer(props: TwistAPlayerProps) {
   const nh = useNameHelper('aplayer');
-  const playlist = usePlaylist(Array.isArray(audio) ? audio : [audio], {
-    initialLoop,
-    initialOrder,
-  });
-
-  const [notice, showNotice] = useNotice();
-
-  const setTimeout = useSetTimeout();
-
-  const autoSkipTimeoutRef = useRef<
-  ReturnType<typeof setTimeout> | undefined
-  >();
-
-  const cancelAutoSkip = useCallback(() => {
-    if (autoSkipTimeoutRef.current) {
-      clearTimeout(autoSkipTimeoutRef.current);
-      autoSkipTimeoutRef.current = undefined;
-    }
-  }, []);
-
-  const isLoopNoonLastSongEndingRef = useRef(false);
-
-  const audioControl = useAudioControl({
-    src: playlist.currentSong.url,
-    initialVolume: volume,
-    autoPlay,
-    mutex,
-    onError(e) {
-      const { error } = e.target as HTMLAudioElement;
-
-      if (error) {
-        showNotice(
-          'An audio error has occurred, player will skip forward in 2 seconds.',
-        );
-      }
-      if (playlist.hasNextSong) {
-        autoSkipTimeoutRef.current = setTimeout(() => {
-          playlist.next();
-        }, 2000);
-      }
-    },
-    onEnded() {
-      const { list, currentSong, loop, prioritize, hasNextSong } = playlist;
-      const { audio } = audioControl;
-
-      // only play current song when loop is "one"
-      if (loop === 'one') {
-        prioritize({ ...currentSong });
-        return;
-      }
-
-      // in last songs and loop is "none"
-      if (!hasNextSong && loop === 'none') {
-        isLoopNoonLastSongEndingRef.current = true;
-        audio!.currentTime = 0;
-        audio!.pause();
-        audio!.src = list[0].url;
-        prioritize(list[0]);
-        return;
-      }
-
-      playlist.next();
-    },
-  });
-
-  const handlePlayButtonClick = useCallback(() => {
-    cancelAutoSkip();
-    audioControl.togglePlay(playlist.currentSong.url);
-  }, [audioControl, cancelAutoSkip, playlist.currentSong.url]);
+  const {
+    bodyRef,
+    appearance,
+    volume,
+    listMaxHeight,
+    theme,
+    border,
+    notice,
+    audio,
+    audioControl,
+    handlePlayButtonClick,
+    handlePlayAudioFromList,
+    isPlaylistOpen,
+    setPlaylistOpen,
+    mini,
+    displayLyrics,
+    setDisplayLyrics,
+    setMini,
+    playlist,
+    hasPlaylist,
+  } = usePlayer(props);
 
   const renderArtist = useCallback((artist?: string | ArtistInfo) => {
     if (!artist) return 'Audio artist';
@@ -117,81 +53,6 @@ export function TwistAPlayer({
       </a>
     );
   }, []);
-
-  const hasPlaylist = playlist.length > 1;
-
-  const playlistAudioProp = useMemo(
-    () => (Array.isArray(audio) ? audio : [audio]),
-    [audio],
-  );
-
-  const { prioritize } = playlist;
-  const handlePlayAudioFromList = useCallback(
-    (audioInfo: AudioInfo) => {
-      cancelAutoSkip();
-      prioritize(audioInfo);
-    },
-    [cancelAutoSkip, prioritize],
-  );
-
-  const [isPlaylistOpen, setPlaylistOpen] = useState(() => hasPlaylist && !listFolded);
-
-  const [mini, setMini] = useState(_mini);
-
-  const [displayLyrics, setDisplayLyrics] = useState(true);
-
-  const bodyRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    setMini(_mini);
-  }, [_mini]);
-
-  useEffect(() => {
-    if (autoPlay) {
-      audioControl.playAudio(playlist.currentSong.url);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const isInitialEffectRef = useRef(true);
-  const prevSong = useRef(playlist.currentSong);
-
-  useEffect(() => {
-    if (isInitialEffectRef.current) {
-      isInitialEffectRef.current = false;
-      return;
-    }
-
-    if (isLoopNoonLastSongEndingRef.current) {
-      isLoopNoonLastSongEndingRef.current = false;
-      return;
-    }
-
-    // playlist.currentSong !== prevSong.current can avoid react strictMode twice render effect
-    if (playlist.currentSong && (
-      playlist.loop === 'one'
-      || playlist.currentSong !== prevSong.current
-    )) {
-      prevSong.current = playlist.currentSong;
-      audioControl.playAudio(playlist.currentSong.url);
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [playlist.currentSong]);
-
-  useEffect(() => {
-    if (appearance === 'fixed') {
-      if (bodyRef.current) {
-        const bodyElement = bodyRef.current;
-        // Explicitly set width on the body element
-        // to ensure the width transition works
-        bodyElement.style.width = `${bodyElement.offsetWidth - 18}px`;
-
-        return () => {
-          bodyElement.removeAttribute('style');
-        };
-      }
-    }
-  }, [appearance]);
 
   return (
     <div
@@ -299,7 +160,7 @@ export function TwistAPlayer({
         ? (
             <Playlist
               open={isPlaylistOpen}
-              audio={playlistAudioProp}
+              audio={audio}
               playingAudioUrl={playlist.currentSong.url}
               onPlayAudio={handlePlayAudioFromList}
               listMaxHeight={listMaxHeight}
