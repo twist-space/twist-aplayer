@@ -38,6 +38,10 @@
     border: none;
   }
 
+  ol li:hover {
+    background-color: hsl(var(--tp-secondary) / .8);
+  }
+
   &__cur {
     display: none;
     width: 3px;
