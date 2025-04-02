@@ -1,7 +1,7 @@
 import type React from 'react';
 import { useNameHelper } from '@/hooks/use-name-helper';
+import { IconLoading } from '@/icons';
 import { computePercentage } from '@/utils/computePercentage';
-import { TiLoading } from '@twistify/react-icons/ti';
 import clsx from 'clsx';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
@@ -99,7 +99,7 @@ export function ProgressBar({
                   className={nh.be('thumb')}
                 >
                   <span className={clsx(nhi.bs('loading'))}>
-                    <TiLoading />
+                    <IconLoading />
                   </span>
                 </span>
               </div>

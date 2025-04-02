@@ -2,21 +2,20 @@ import type { PlaylistLoop, PlaylistOrder } from '@/hooks/use-playlist';
 import { ProgressBar } from '@/components/progress';
 import { Volume } from '@/components/volume';
 import { useNameHelper } from '@/hooks/use-name-helper';
+import {
+  IconBack,
+  IconControllerPause,
+  IconControllerPlay,
+  IconForward,
+  IconLyric,
+  IconMenu,
+  IconOrderList,
+  IconOrderRandom,
+  IconReapteRounded,
+  IconRepeatOff,
+  IconRepeatOne,
+} from '@/icons';
 import { formatAudioDuration } from '@/utils/formatAudioDuration';
-import { AiBackwardFilled as IconBack, AiForwardFilled as IconForward } from '@twistify/react-icons/ai';
-import {
-  MdiMenu as IconMenu,
-  MdiShuffleVariant as IconOrderRandom,
-  MdiRepeatOff as IconRepeatOff,
-} from '@twistify/react-icons/mdi';
-import {
-  MiMusicVideo as IconLyric,
-  MiArrowRightAltRounded as IconOrderList,
-  MiPause as IconPause,
-  MiPlayArrowRounded as IconPlay,
-  MiRepeatRounded as IconReapteRounded,
-  MiRepeatOneRounded as IconRepeatOne,
-} from '@twistify/react-icons/mi';
 import clsx from 'clsx';
 import { useCallback } from 'react';
 
@@ -135,7 +134,7 @@ export function PlaybackControls({
           type="button"
           aria-label={isPlaying ? 'Pause audio' : 'Play audio'}
         >
-          {isPlaying ? <IconPause /> : <IconPlay />}
+          {isPlaying ? <IconControllerPause /> : <IconControllerPlay />}
         </button>
         <button
           className={clsx(nhi.b(), nhi.bs('forward'))}

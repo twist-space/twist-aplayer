@@ -1,10 +1,10 @@
 import { useNameHelper } from '@/hooks/use-name-helper';
-import { computePercentageOfY } from '@/utils/computePercentage';
 import {
-  MiVolumeDownRounded as IconVolumeDown,
-  MiVolumeMute as IconVolumeOff,
-  MiVolumeUpRounded as IconVolumeUp,
-} from '@twistify/react-icons/mi';
+  IconVolumeDown,
+  IconVolumeOff,
+  IconVolumeUp,
+} from '@/icons';
+import { computePercentageOfY } from '@/utils/computePercentage';
 import clsx from 'clsx';
 import { useCallback, useRef, useState } from 'react';
 

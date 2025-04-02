@@ -6,11 +6,7 @@ import {
   useNameHelper,
   usePlayer,
 } from '@/hooks';
-import {
-  IonPause as IconPause,
-  IonIosArrowForward as IconRight,
-} from '@twistify/react-icons/ion';
-import { TiPlay as IconPlay } from '@twistify/react-icons/ti';
+import { IconPause, IconPlay, IconRight } from '@/icons';
 import clsx from 'clsx';
 import { useCallback } from 'react';
 import './styles/main.scss';
