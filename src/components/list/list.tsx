@@ -50,6 +50,7 @@ export function Playlist({
       ref={listRef}
       className={clsx(nh.b(), {
         [nh.bm('hide')]: !open,
+        [nh.bs('vars')]: true,
       })}
       aria-label="Audio playlist"
       aria-live="polite"

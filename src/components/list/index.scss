@@ -5,6 +5,11 @@
   display: none;
   overflow: hidden;
 
+  &-vars {
+    --tp-list-scrollbar-thumb-color: #8884;
+    --tp-list-scrollbar-thumb-hover-color: hsl(var(--tp-muted-foreground) / .6);
+  }
+
   &--hide {
     max-height: 0 !important;
   }
@@ -40,6 +45,19 @@
 
   ol li:hover {
     background-color: hsl(var(--tp-secondary) / .8);
+  }
+
+  ol::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  ol::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background-color: var(--tp-list-scrollbar-thumb-color);
+  }
+
+  ol::-webkit-scrollbar-thumb:hover {
+    background-color: var(--tp-list-scrollbar-thumb-hover-color);
   }
 
   &__cur {
