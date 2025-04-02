@@ -1,6 +1,7 @@
 import {
   AiBackwardFilled as IconBack,
   AiForwardFilled as IconForward,
+  AiLoading3QuartersOutlined as IconLoading,
 } from '@twistify/react-icons/ai';
 import {
   IonPause as IconPause,
@@ -23,7 +24,6 @@ import {
   MiVolumeUpRounded as IconVolumeUp,
 } from '@twistify/react-icons/mi';
 import {
-  TiLoading as IconLoading,
   TiPlay as IconPlay,
 } from '@twistify/react-icons/ti';
 
