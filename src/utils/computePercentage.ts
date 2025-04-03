@@ -1,6 +1,6 @@
 export function computePercentage(
   eventTarget: Pick<MouseEvent, 'clientX'>,
-  progressBarRef: React.RefObject<HTMLDivElement>,
+  progressBarRef: React.RefObject<HTMLDivElement | null>,
 ) {
   if (!progressBarRef.current) return 0;
   let percentage
@@ -15,7 +15,7 @@ export function computePercentage(
 
 export function computePercentageOfY(
   eventTarget: Pick<MouseEvent, 'clientY'>,
-  volumeBarRef: React.RefObject<HTMLDivElement>,
+  volumeBarRef: React.RefObject<HTMLDivElement | null>,
 ) {
   if (!volumeBarRef.current) return 0;
   let percentage

@@ -51,13 +51,13 @@ export function usePlayer(_props: TwistAPlayerProps) {
   const setTimeout = useSetTimeout();
 
   const autoSkipTimeoutRef = useRef<
-    ReturnType<typeof setTimeout> | undefined
-  >();
+    ReturnType<typeof setTimeout> | null
+  >(null);
 
   const cancelAutoSkip = useCallback(() => {
     if (autoSkipTimeoutRef.current) {
       clearTimeout(autoSkipTimeoutRef.current);
-      autoSkipTimeoutRef.current = undefined;
+      autoSkipTimeoutRef.current = null;
     }
   }, []);
 

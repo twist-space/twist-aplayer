@@ -16,7 +16,7 @@ type CreateAudioElementOptions = {
 const instances: HTMLAudioElement[] = [];
 
 function useCreateAudioElement(options?: CreateAudioElementOptions) {
-  const audioElementRef = useRef<HTMLAudioElement>();
+  const audioElementRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
     if (typeof window !== 'undefined' && !audioElementRef.current) {
@@ -88,7 +88,7 @@ function useCreateAudioElement(options?: CreateAudioElementOptions) {
           instances.splice(index, 1);
         }
       }
-      audioElementRef.current = undefined;
+      audioElementRef.current = null;
     };
   }, []);
 
