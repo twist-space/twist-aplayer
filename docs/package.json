@@ -1,0 +1,24 @@
+{
+  "name": "docs",
+  "version": "1.0.0",
+  "description": "twist aplayer docs",
+  "author": "razzh",
+  "keywords": [],
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "^15.2.4",
+    "nextra": "^4.2.17",
+    "nextra-theme-docs": "^4.2.17",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "twist-aplayer": "^1.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.13.17"
+  }
+}
