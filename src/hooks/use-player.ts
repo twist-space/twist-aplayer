@@ -127,7 +127,7 @@ export function usePlayer(_props: TwistAPlayerProps) {
 
   const [isPlaylistOpen, setPlaylistOpen] = useState(() => hasPlaylist && !listFolded);
 
-  const [displayLyrics, setDisplayLyrics] = useState(true);
+  const [displayLyrics, setDisplayLyrics] = useState(appearance !== 'fixed');
 
   const bodyRef = useRef<HTMLDivElement>(null);
 
