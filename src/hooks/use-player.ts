@@ -1,11 +1,13 @@
 import type { AudioInfo, TwistAPlayerProps } from '@/types';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { useAudioControl } from './use-audio-control';
-import { useMergeProps } from './use-merge-props';
-import { useMiniMode } from './use-mini-mode';
-import { useNotice } from './use-notice';
-import { usePlaylist } from './use-playlist';
-import { useSetTimeout } from './use-set-timeout';
+import {
+  useAudioControl,
+  useMergeProps,
+  useMiniMode,
+  useNotice,
+  usePlaylist,
+  useSetTimeout,
+} from '.';
 
 export function usePlayer(_props: TwistAPlayerProps) {
   const props = useMergeProps(_props, {
