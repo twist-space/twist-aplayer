@@ -29,6 +29,8 @@ Twist Aplayer icons powered by [twist-icons](https://github.com/twist-space/twis
 npm i twist-aplayer
 ```
 
+> React 18 should use a version below 1.5.x
+
 Import TwistAPlayer component from twist-aplayer package, and import stylesheet.
 
 ```tsx
