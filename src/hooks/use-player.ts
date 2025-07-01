@@ -162,17 +162,15 @@ export function usePlayer(_props: TwistAPlayerProps) {
   }, [playlist.currentSong]);
 
   useEffect(() => {
-    if (appearance === 'fixed') {
-      if (bodyRef.current) {
-        const bodyElement = bodyRef.current;
-        // Explicitly set width on the body element
-        // to ensure the width transition works
-        bodyElement.style.width = `${bodyElement.offsetWidth - 18}px`;
+    if (appearance === 'fixed' && bodyRef.current) {
+      const bodyElement = bodyRef.current;
+      // Explicitly set width on the body element
+      // to ensure the width transition works
+      bodyElement.style.width = '400px';
 
-        return () => {
-          bodyElement.removeAttribute('style');
-        };
-      }
+      return () => {
+        bodyElement.removeAttribute('style');
+      };
     }
   }, [appearance]);
 

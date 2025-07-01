@@ -70,7 +70,7 @@ export interface TwistAPlayerProps {
    */
   mutex?: boolean;
   /**
-   * @description indicate whether list should folded at first
+   * @description indicate whether list should folded at first render
    * @default false
    */
   listFolded?: boolean;
@@ -85,3 +85,7 @@ export interface TwistAPlayerProps {
    */
   border?: boolean;
 }
+
+export type NullableType<T> = {
+  [P in keyof T]: T[P] | null;
+};

@@ -50,6 +50,7 @@
     --tp-pic-height: 66px;
     --tp-pic-transition-function: ease;
     --tp-pic-transition-timing: .3s;
+    --tp-pic-zIndex: 99;
     --tp-button-background: rgba(0, 0, 0, 0.2);
     --tp-box-shadow: 0 0 #0000, 0 0 #0000, 0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px -1px rgba(0,0,0,.1);
     --tp-user-border: hsl(var(--tp-border) / .3);
@@ -80,6 +81,7 @@
   &__pic {
     position: relative;
     float: left;
+    z-index: var(--tp-pic-zIndex);
     width: var(--tp-pic-width);
     height: var(--tp-pic-height);
     background-size: cover;
@@ -287,6 +289,7 @@
     overflow: visible;
     max-width: var(--tp-max-width);
     box-shadow: none;
+    max-width: 400px;
 
     .twist-aplayer__body {
       position: fixed;
@@ -361,7 +364,7 @@
   }
 
   &.twist-aplayer--fixed.twist-aplayer--narrow {
-    width: 66px;
+    // width: 66px;
 
     .twist-aplayer__info,
     .twist-aplayer-list {

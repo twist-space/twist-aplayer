@@ -56,7 +56,7 @@ function App() {
       document.documentElement.style.background = '#ffffff';
     }
   };
-  const [mini, setMini] = useState(false);
+  const [mini, setMini] = useState(true);
 
   return (
     <div

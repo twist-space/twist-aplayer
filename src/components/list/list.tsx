@@ -10,6 +10,7 @@ interface PlaylistProps {
   onPlayAudio?: (audio: AudioInfo) => void;
   themeColor?: string;
   listMaxHeight?: number;
+  mini: boolean;
 }
 
 export function Playlist({
@@ -18,6 +19,7 @@ export function Playlist({
   playingAudioUrl,
   onPlayAudio,
   listMaxHeight,
+  mini,
 }: PlaylistProps) {
   const nh = useNameHelper('aplayer-list');
   const olStyle = listMaxHeight ? { maxHeight: listMaxHeight } : undefined;
@@ -43,7 +45,7 @@ export function Playlist({
         listElement.removeAttribute('style');
       };
     }
-  }, [listMaxHeight]);
+  }, [listMaxHeight, mini]);
 
   return (
     <div

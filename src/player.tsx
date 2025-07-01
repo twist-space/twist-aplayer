@@ -34,7 +34,6 @@ export function TwistAPlayer(props: TwistAPlayerProps) {
     playlist,
     hasPlaylist,
   } = usePlayer(props);
-
   const renderArtist = useCallback((artist?: string | ArtistInfo) => {
     if (!artist) return 'Audio artist';
     if (typeof artist === 'string') return artist;
@@ -160,6 +159,7 @@ export function TwistAPlayer(props: TwistAPlayerProps) {
               playingAudioUrl={playlist.currentSong.url}
               onPlayAudio={handlePlayAudioFromList}
               listMaxHeight={listMaxHeight}
+              mini={mini}
             />
           )
         : null}
