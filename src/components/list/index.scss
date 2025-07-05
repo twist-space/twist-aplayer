@@ -3,6 +3,7 @@
   transition: all 0.5s ease;
   will-change: height;
   display: none;
+  background-color: hsl(var(--tp-background));
   overflow: hidden;
 
   &-vars {
