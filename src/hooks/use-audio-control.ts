@@ -50,7 +50,7 @@ function useCreateAudioElement(options?: CreateAudioElementOptions) {
       audio.addEventListener('error', options.onError);
 
       return () => {
-      // @ts-expect-error nothing
+        // @ts-expect-error nothing
         audio.removeEventListener('error', options.onError);
       };
     }
@@ -66,7 +66,7 @@ function useCreateAudioElement(options?: CreateAudioElementOptions) {
       audio.addEventListener('ended', options.onEnded);
 
       return () => {
-      // @ts-expect-error nothing
+        // @ts-expect-error nothing
         audio.removeEventListener('ended', options.onEnded);
       };
     }
@@ -147,6 +147,7 @@ export function useAudioControl(options: CreateAudioElementOptions) {
 
   const seek = useCallback(
     (second: number) => {
+      if (!Number.isFinite(second)) return;
       (audioElementRef.current as HTMLAudioElement).currentTime = second;
     },
     [audioElementRef],
