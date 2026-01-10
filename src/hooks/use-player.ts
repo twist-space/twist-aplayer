@@ -4,6 +4,7 @@ import {
   useAudioControl,
   useMergeProps,
   useMiniMode,
+  useSuperMiniMode,
   useNotice,
   usePlaylist,
   useSetTimeout,
@@ -16,6 +17,7 @@ export function usePlayer(_props: TwistAPlayerProps) {
     autoPlay: false,
     listMaxHeight: 250,
     mini: false,
+    superMini: false,
     mutex: true,
     listFolded: false,
     theme: 'light',
@@ -34,6 +36,8 @@ export function usePlayer(_props: TwistAPlayerProps) {
     mutex,
     theme,
     border,
+    mini: miniProp,
+    superMini: superMiniProp,
   } = props;
 
   const playlistAudioProp = useMemo(
@@ -48,7 +52,24 @@ export function usePlayer(_props: TwistAPlayerProps) {
 
   const [notice, showNotice] = useNotice();
 
-  const { mini, setMini } = useMiniMode(props.mini);
+  const {
+    mini,
+    expanded: miniExpanded,
+    toggleExpanded: toggleMiniExpanded,
+    isMiniCollapsed,
+    isMiniExpanded
+  } = useMiniMode(miniProp);
+
+  const {
+    superMini,
+    expanded: superMiniExpanded,
+    toggleExpanded: toggleSuperMiniExpanded,
+    isSuperMiniCollapsed,
+    isSuperMiniExpanded,
+  } = useSuperMiniMode(superMiniProp);
+
+  const showMini = !superMini && mini;
+  const showSuperMini = superMini && !mini;
 
   const setTimeout = useSetTimeout();
 
@@ -160,7 +181,7 @@ export function usePlayer(_props: TwistAPlayerProps) {
       prevSong.current = playlist.currentSong;
       audioControl.playAudio(playlist.currentSong.url);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playlist.currentSong]);
 
   useEffect(() => {
@@ -193,8 +214,18 @@ export function usePlayer(_props: TwistAPlayerProps) {
     mini,
     displayLyrics,
     setDisplayLyrics,
-    setMini,
     playlist,
     hasPlaylist,
+    superMini,
+    showSuperMini,
+    superMiniExpanded,
+    toggleSuperMiniExpanded,
+    isSuperMiniCollapsed,
+    isSuperMiniExpanded,
+    showMini,
+    miniExpanded,
+    toggleMiniExpanded,
+    isMiniCollapsed,
+    isMiniExpanded
   };
 }

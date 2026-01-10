@@ -27,12 +27,19 @@ export function TwistAPlayer(props: TwistAPlayerProps) {
     handlePlayAudioFromList,
     isPlaylistOpen,
     setPlaylistOpen,
-    mini,
     displayLyrics,
     setDisplayLyrics,
-    setMini,
     playlist,
     hasPlaylist,
+    showSuperMini,
+    superMiniExpanded,
+    toggleSuperMiniExpanded,
+    isSuperMiniCollapsed,
+    isSuperMiniExpanded,
+    showMini,
+    toggleMiniExpanded,
+    isMiniCollapsed,
+    isMiniExpanded
   } = usePlayer(props);
   const renderArtist = useCallback((artist?: string | ArtistInfo) => {
     if (!artist) return 'Audio artist';
@@ -57,10 +64,15 @@ export function TwistAPlayer(props: TwistAPlayerProps) {
         [nh.bm(appearance)]: true,
         [nh.bm('loading')]: audioControl.isLoading,
         [nh.bm('withlist')]: hasPlaylist,
-        [nh.bm('list-folded')]: !isPlaylistOpen,
+        [nh.bm('list-collapsed')]: !isPlaylistOpen,
         [nh.bm('withlrc')]: Boolean(playlist.currentSong.lrc) && appearance !== 'fixed',
-        [nh.bm('narrow')]: mini,
         [nh.bm('border')]: border,
+        [nh.bm('mini')]: showMini,
+        [nh.bm('mini-collapsed')]: isMiniCollapsed,
+        [nh.bm('mini-expanded')]: isMiniExpanded,
+        [nh.bm('super-mini')]: showSuperMini,
+        [nh.bm('super-mini-collapsed')]: isSuperMiniCollapsed,
+        [nh.bm('super-mini-expanded')]: isSuperMiniExpanded,
       })}
       role="region"
       aria-label="Audio Player"
@@ -103,12 +115,12 @@ export function TwistAPlayer(props: TwistAPlayerProps) {
           {appearance === 'fixed'
             ? null
             : (
-                <Lyrics
-                  show={displayLyrics}
-                  lrcText={playlist.currentSong.lrc}
-                  currentTime={audioControl.currentTime ?? 0}
-                />
-              )}
+              <Lyrics
+                show={displayLyrics}
+                lrcText={playlist.currentSong.lrc}
+                currentTime={audioControl.currentTime ?? 0}
+              />
+            )}
           <PlaybackControls
             volume={audioControl.volume ?? volume}
             onChangeVolume={audioControl.setVolume}
@@ -144,7 +156,15 @@ export function TwistAPlayer(props: TwistAPlayerProps) {
         </div>
         <div
           className={nh.be('miniswitcher')}
-          onClick={() => setMini(prev => !prev)}
+          onClick={toggleMiniExpanded}
+        >
+          <button className={clsx(nh.bs('icon'), nh.bs('icon-right'))} type="button">
+            <IconRight />
+          </button>
+        </div>
+        <div
+          className={nh.be('super-miniswitcher')}
+          onClick={toggleSuperMiniExpanded}
         >
           <button className={clsx(nh.bs('icon'), nh.bs('icon-right'))} type="button">
             <IconRight />
@@ -153,23 +173,23 @@ export function TwistAPlayer(props: TwistAPlayerProps) {
       </div>
       {hasPlaylist
         ? (
-            <Playlist
-              open={isPlaylistOpen}
-              audio={audio}
-              playingAudioUrl={playlist.currentSong.url}
-              onPlayAudio={handlePlayAudioFromList}
-              listMaxHeight={listMaxHeight}
-              mini={mini}
-            />
-          )
+          <Playlist
+            open={isPlaylistOpen}
+            audio={audio}
+            playingAudioUrl={playlist.currentSong.url}
+            onPlayAudio={handlePlayAudioFromList}
+            listMaxHeight={listMaxHeight}
+            isMiniExpanded={isMiniExpanded}
+            isSuperMiniExpanded={superMiniExpanded}
+          />
+        )
         : null}
-      {appearance === 'fixed' && (
-        <Lyrics
-          show={displayLyrics}
-          lrcText={playlist.currentSong.lrc}
-          currentTime={audioControl.currentTime ?? 0}
-        />
-      )}
+      <Lyrics
+        show={displayLyrics}
+        lrcText={playlist.currentSong.lrc}
+        currentTime={audioControl.currentTime ?? 0}
+      />
     </div>
   );
 }
+

@@ -1,5 +1,5 @@
 import type { AudioInfo } from '../src/types';
-import React, { StrictMode, useState } from 'react';
+import { StrictMode, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { TwistAPlayer } from '../src';
 
@@ -91,7 +91,8 @@ function App() {
           audio={playlist}
           appearance="fixed"
           initialLoop="all"
-          mini={mini}
+          superMini={mini}
+          // mini={mini}
           theme={theme}
         />
       </div>
