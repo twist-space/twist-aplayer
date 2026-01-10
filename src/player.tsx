@@ -114,15 +114,15 @@ export function TwistAPlayer(props: TwistAPlayerProps) {
               {renderArtist(playlist.currentSong?.artist)}
             </span>
           </div>
-          {appearance === 'fixed'
-            ? null
-            : (
+          {appearance !== 'fixed'
+            ? (
               <Lyrics
                 show={displayLyrics}
                 lrcText={playlist.currentSong.lrc}
                 currentTime={audioControl.currentTime ?? 0}
               />
-            )}
+            )
+            : null}
           <PlaybackControls
             volume={audioControl.volume ?? volume}
             onChangeVolume={audioControl.setVolume}
@@ -186,11 +186,14 @@ export function TwistAPlayer(props: TwistAPlayerProps) {
           />
         )
         : null}
-      <Lyrics
-        show={displayLyrics}
-        lrcText={playlist.currentSong.lrc}
-        currentTime={audioControl.currentTime ?? 0}
-      />
+      {appearance === 'fixed'
+        ? (
+          <Lyrics
+            show={displayLyrics}
+            lrcText={playlist.currentSong.lrc}
+            currentTime={audioControl.currentTime ?? 0}
+          />
+        ) : null}
     </div>
   );
 }
