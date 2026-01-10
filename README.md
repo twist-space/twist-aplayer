@@ -107,6 +107,11 @@ export interface TwistAPlayerProps {
    */
   mini?: boolean;
   /**
+   * @description enable super mini mode for mobile devices, only shows miniswitcher initially
+   * @default false
+   */
+  superMini?: boolean;
+  /**
    * @default prevent to play multiple player at the same time, pause other players when this player start play
    * @default true
    */
