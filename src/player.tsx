@@ -41,6 +41,7 @@ export function TwistAPlayer(props: TwistAPlayerProps) {
     isMiniCollapsed,
     isMiniExpanded
   } = usePlayer(props);
+
   const renderArtist = useCallback((artist?: string | ArtistInfo) => {
     if (!artist) return 'Audio artist';
     if (typeof artist === 'string') return artist;
@@ -64,6 +65,7 @@ export function TwistAPlayer(props: TwistAPlayerProps) {
         [nh.bm(appearance)]: true,
         [nh.bm('loading')]: audioControl.isLoading,
         [nh.bm('withlist')]: hasPlaylist,
+        [nh.bm('list-expanded')]: isPlaylistOpen,
         [nh.bm('list-collapsed')]: !isPlaylistOpen,
         [nh.bm('withlrc')]: Boolean(playlist.currentSong.lrc) && appearance !== 'fixed',
         [nh.bm('border')]: border,
