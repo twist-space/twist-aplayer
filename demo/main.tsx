@@ -81,9 +81,6 @@ function App() {
         >
           切换主题
         </button>
-        <button onClick={() => setMini(!mini)} type="button">
-          切换mini
-        </button>
       </div>
       {/* fixed */}
       <div style={{ width: 600 }}>
@@ -91,8 +88,8 @@ function App() {
           audio={playlist}
           appearance="fixed"
           initialLoop="all"
-          superMini={mini}
-          // mini={mini}
+          // superMini={mini}
+          mini={mini}
           theme={theme}
         />
       </div>
