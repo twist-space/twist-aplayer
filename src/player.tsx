@@ -12,6 +12,7 @@ import { useCallback } from 'react';
 import './styles/main.scss';
 
 export function TwistAPlayer(props: TwistAPlayerProps) {
+  const { className, style } = props;
   const nh = useNameHelper('aplayer');
   const {
     bodyRef,
@@ -75,7 +76,8 @@ export function TwistAPlayer(props: TwistAPlayerProps) {
         [nh.bm('super-mini')]: showSuperMini,
         [nh.bm('super-mini-collapsed')]: isSuperMiniCollapsed,
         [nh.bm('super-mini-expanded')]: isSuperMiniExpanded,
-      })}
+      }, className)}
+      style={style}
       role="region"
       aria-label="Audio Player"
     >

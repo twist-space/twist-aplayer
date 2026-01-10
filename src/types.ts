@@ -65,15 +65,14 @@ export interface TwistAPlayerProps {
    */
   mini?: boolean;
   /**
-   * @default prevent to play multiple player at the same time, pause other players when this player start play
-   * @default true
-   */
-  /**
    * @description enable super mini mode for mobile devices, only shows miniswitcher initially
    * @default false
    */
   superMini?: boolean;
-
+  /**
+   * @default prevent to play multiple player at the same time, pause other players when this player start play
+   * @default true
+   */
   mutex?: boolean;
   /**
    * @description indicate whether list should folded at first render
@@ -90,6 +89,14 @@ export interface TwistAPlayerProps {
    * @default false
    */
   border?: boolean;
+  /**
+   * @description custom class name for the player container
+   */
+  className?: string;
+  /**
+   * @description custom inline styles for the player container
+   */
+  style?: React.CSSProperties;
 }
 
 export type NullableType<T> = {

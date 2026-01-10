@@ -88,8 +88,8 @@ function App() {
           audio={playlist}
           appearance="fixed"
           initialLoop="all"
-          // superMini={mini}
-          mini={mini}
+          superMini={mini}
+          // mini={mini}
           theme={theme}
         />
       </div>
