@@ -324,7 +324,7 @@
       z-index: var(--tp-zIndex);
       padding-right: 18px;
       transition: all 0.3s ease;
-      max-width: 400px;
+      max-width: var(--tp-max-width);
     }
 
     .twist-aplayer--list-expanded .twist-aplayer__info {

@@ -189,7 +189,8 @@ export function usePlayer(_props: TwistAPlayerProps) {
       const bodyElement = bodyRef.current;
       // Explicitly set width on the body element
       // to ensure the width transition works
-      bodyElement.style.width = '400px';
+      bodyElement.style.width = 'calc(100% - 18px)';
+      bodyElement.style.maxWidth = '382px';
 
       return () => {
         bodyElement.removeAttribute('style');
