@@ -133,6 +133,14 @@ export interface TwistAPlayerProps {
    * @default false
    */
   border?: boolean;
+  /**
+   * @description custom class name for the player container
+   */
+  className?: string;
+  /**
+   * @description custom inline styles for the player container
+   */
+  style?: React.CSSProperties;
 }
 ```
 
