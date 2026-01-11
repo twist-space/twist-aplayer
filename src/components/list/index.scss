@@ -44,8 +44,10 @@
     border: none;
   }
 
-  ol li:hover {
-    background-color: hsl(var(--tp-secondary) / .8);
+  @media (hover: hover) {
+    ol li:hover {
+      background-color: hsl(var(--tp-secondary) / .8);
+    }
   }
 
   ol::-webkit-scrollbar {
