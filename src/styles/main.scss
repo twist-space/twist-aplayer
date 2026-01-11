@@ -299,7 +299,7 @@
     display: none;
   }
 
-  &--border {
+  &--border:not(&--fixed) {
     border: 1px solid var(--tp-user-border);
   }
 
@@ -344,10 +344,6 @@
 
     .twist-aplayer__music {
       width: calc(100% - 105px);
-    }
-
-    .twist-aplayer--border {
-      border: none;
     }
 
     .twist-aplayer-lrc {
