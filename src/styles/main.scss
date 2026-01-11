@@ -323,6 +323,7 @@
       padding-right: 18px;
       transition: all 0.3s ease;
       max-width: var(--tp-max-width);
+      border-radius: var(--tp-mini-switcher-border);
     }
 
     .twist-aplayer--list-expanded .twist-aplayer__info {
