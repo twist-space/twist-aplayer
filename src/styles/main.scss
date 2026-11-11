@@ -312,6 +312,12 @@
     z-index: var(--tp-zIndex);
     overflow: visible;
     box-shadow: none;
+    // left/right stretch this shell across the viewport. The playlist is in
+    // flow, so opening it gives the shell height and it eats clicks beside the
+    // player. Cap the box to the player width, and ignore hits on the shell
+    // itself (the body and list opt back in).
+    max-width: var(--tp-max-width);
+    pointer-events: none;
 
     .twist-aplayer__body {
       position: fixed;
@@ -324,6 +330,7 @@
       transition: all 0.3s ease;
       max-width: var(--tp-max-width);
       border-radius: var(--tp-mini-switcher-border);
+      pointer-events: auto;
     }
 
     .twist-aplayer--list-expanded .twist-aplayer__info {
@@ -340,6 +347,7 @@
       margin-bottom: 65px;
       width: calc(100% - 18px);
       max-width: 382px;
+      pointer-events: auto;
     }
 
     .twist-aplayer__music {
